@@ -1,6 +1,6 @@
 # Método
 
-## Prompt 2: confirmação dos candidatos (etapa parcial)
+## Prompt 2: candidatos confirmados
 
 Leitura integral dos 84 CSVs de BU usando DuckDB, um arquivo por vez, após
 descompactação temporária. A extensão oficial `encodings` é instalada em cache
@@ -20,12 +20,140 @@ Todos os arquivos de cada ano, inclusive `ZZ`, foram consultados.
 | 2026 | 22 | FLAVIO BOLSONARO | PL |
 
 Comando: `uv run python -m apuracao.ingest --listar-candidatos`.
-O mapeamento A/B aguarda confirmação do usuário e não foi criado.
-Esta etapa ainda não gera `secoes_{ano}.parquet`. Permanecem pendentes a
-agregação por seção, a investigação de fuso horário, o relatório de nulos e
-empates, as seções agregadas e a comparação de totais com fonte independente.
-A existência de horário de recebimento ainda não resolve a comparação entre
-fusos nem estabelece o instante de totalização pública.
+O usuário confirmou A=13 nos três anos; B=17 em 2018 e B=22 em 2022/2026.
+Configuração em `src/apuracao/config.py`. Justificativa confirmada:
+"13 é o único número presente nos três anos; num 2º turno %B = 100 - %A,
+então a escolha só define o sinal do swing, não altera projeções nem erros."
+A invariância pressupõe modelos e intervalos transformados de forma equivalente
+ao trocar A/B; a configuração não afirma equivalência ideológica entre candidatos.
+
+### Agregação e esquema dos Parquets
+
+Comando completo: `uv run python -m apuracao.ingest` ou `--ano 2026`.
+As 28 UFs de cada ano, inclusive exterior `ZZ`, são lidas com DuckDB.
+`QT_APTOS`, `QT_COMPARECIMENTO`, `QT_ABSTENCOES`, horário e agregadas usam
+`max` somente após recusar valores repetidos divergentes na mesma seção.
+`QT_VOTOS` é somado por tipo e número do votável; somente Nominal, Branco e
+Nulo foram observados. Se aparecer outro tipo ou candidato, a ingestão falha.
+Confere-se o balanço válidos+brancos+nulos=comparecimento e
+comparecimento+abstenções=aptos em cada seção. Chaves duplicadas são recusadas.
+
+A chave é `(uf, cod_municipio, zona, secao)`. O código municipal TSE fica como
+texto de cinco dígitos, inclusive zeros iniciais; zona e seção são inteiros.
+`SG_ UF` é normalizada para `uf`; `DS_AGREGADAS` e `DS_SECOES_AGREGADAS` para
+`secoes_agregadas`; `CD_FLASCARD_URNA_EFETIVADA` e
+`CD_FLASHCARD_URNA_EFETIVADA` para `cd_flashcard_urna_efetivada`.
+O texto de seções agregadas é preservado e não explode em linhas adicionais:
+os votos e eleitores já pertencem à seção principal da urna.
+
+Saídas: `data/interim/secoes_{ano}.parquet`, com `uf`, `cod_municipio`,
+`nome_municipio`, `zona`, `secao`, `aptos`, `comparecimento`, `abstencoes`,
+`votos_A`, `votos_B`, `votos_validos`, `brancos`, `nulos`, `votos_por_numero`
+(mapa número -> votos), `votos_13` e `votos_17`/`votos_22`, `recebido_texto`,
+`recebido_em_registrado`, `recebido_em`, `emitido_em_registrado`,
+`encerramento_registrado`, `secoes_agregadas`, `cd_flashcard_urna_efetivada`,
+`exterior`, `tem_bu`, `apta_simulacao`, `origem_registro`,
+`situacao_instalada_oficial`, `situacao_anulada_oficial`, `recebido_hor_tse_oficial`.
+
+### Cobertura e totalização independente
+
+Foram baixados do [catálogo oficial TSE](https://dadosabertos.tse.jus.br/dataset/)
+os ZIPs `votacao_candidato_munzona_{ano}`, `detalhe_votacao_munzona_{ano}` e
+`detalhe_votacao_secao_{ano}`. Usou-se somente `*_{ano}_BR.csv`, com cargo 1,
+turno 2 e unidade eleitoral BR. Não se concatenou BR com BRASIL ou UFs,
+pois haveria duplicação. URLs exatas, cabeçalhos inspecionados, registros ausentes
+e resultados estão em [VALIDACAO_INGESTAO.json](VALIDACAO_INGESTAO.json).
+
+Campos usados na votação nominal: `NR_CANDIDATO`, `QT_VOTOS_NOMINAIS_VALIDOS`.
+No detalhe municipal: `QT_APTOS`, `QT_COMPARECIMENTO`, `QT_TOTAL_VOTOS_VALIDOS`,
+`QT_VOTOS_BRANCOS`, `QT_TOTAL_VOTOS_NULOS`, `QT_ELEITORES_SECOES_NAO_INSTALADAS`,
+`QT_SECOES_PRINCIPAIS`, `QT_SECOES_AGREGADAS`, `QT_SECOES_NAO_INSTALADAS`.
+No detalhe por seção: chaves `SG_UF`, `CD_MUNICIPIO`, `NR_ZONA`, `NR_SECAO`;
+`QT_APTOS`, `QT_COMPARECIMENTO`, `QT_VOTOS_NOMINAIS`, `QT_VOTOS_BRANCOS`,
+`QT_VOTOS_NULOS`, `ST_SECAO_INSTALADA`, `ST_SECAO_ANULADA`, `DS_ORIGEM_VOTO`,
+`DT_RECEBIMENTO_BU_HOR_TSE`. Os cabeçalhos completos estão no JSON versionado.
+
+O eleitorado nacional inclui seções sem BU. Elas foram identificadas por
+anti-join com o detalhe oficial por seção, nunca pelo resíduo dos totais.
+Todos os seus comparecimentos e votos são zero na fonte independente.
+Essas linhas recebem `tem_bu=False`, `apta_simulacao=False`,
+`origem_registro=detalhe_oficial_sem_bu`, horário do BU nulo e aptos da fonte
+oficial. O horário administrativo do detalhe fica em campo separado e não é
+inventado como chegada de um BU. Nas seções com BU, aptos e comparecimento
+são confrontados individualmente com a fonte independente antes da publicação.
+
+| Ano | Linhas no Parquet | Com BU / aptas à simulação | Sem BU | Aptos sem BU |
+| --- | ---: | ---: | ---: | ---: |
+| 2018 | 454.490 | 454.448 | 42 | 1.139 |
+| 2022 | 472.075 | 472.028 | 47 | 657 |
+| 2026 | 499.248 | 499.205 | 43 | 525 |
+
+Em 2018 há 40 seções não instaladas com 470 aptos e duas outras sem BU,
+ES/56227/zona37/seção87 (334 aptos) e PR/78573/zona83/seção15 (335 aptos).
+O detalhe de 2018 não informa a situação dessas duas; não foram rotuladas
+como não instaladas. Em 2026 são 41 não instaladas (423 aptos) e duas outras
+sem BU (102 aptos); os indicadores de situação originais ficam no JSON.
+Em 2022, as 47 sem BU correspondem às 47 não instaladas. Não confundir o
+número de seções principais com o de seções agregadas.
+
+| Ano | Aptos | Votos candidato 13 | Votos outro candidato | Válidos | Diferença contra fonte |
+| --- | ---: | ---: | ---: | ---: | --- |
+| 2018 | 147.306.294 | 47.040.906 | 57.797.847 (17) | 104.838.753 | zero em todos |
+| 2022 | 156.454.011 | 60.345.999 | 58.206.354 (22) | 118.552.353 | zero em todos |
+| 2026 | 158.745.502 | 64.256.232 | 59.826.041 (22) | 124.082.273 | zero em todos |
+
+Comparecimento, brancos e nulos também coincidem exatamente. Os totais fixos
+de referência estão em `config.py`, com fontes; a rotina e os testes leem
+também os totais obtidos dos arquivos independentes, sem derivá-los dos BUs.
+Os testes reais são pulados se o clone não tiver os dados locais; neste ambiente
+os três anos foram executados. Há também testes sintéticos para atributos
+repetidos, conflitos e diferenças históricas do cabeçalho.
+
+### Fuso e limites da ordem de recebimento
+
+**Conclusão operacional: `DT_BU_RECEBIDO` já usa o relógio do TSE, interpretado
+como Brasília em 2022 e 2026. Não somar horas por UF.** A associação a Brasília
+é uma inferência documentada, não uma definição literal no dicionário BWEB.
+O leiame do detalhe por seção identifica `DT_RECEBIMENTO_BU_HOR_TSE` como Hora
+TSE. O confronto por chave encontrou igualdade de timestamp em **472.028 de
+472.028 BUs de 2022 e 499.205 de 499.205 BUs de 2026**, inclusive exterior.
+A [Resolução 23.669/2021, art. 254](https://www.tse.jus.br/legislacao/compilada/res/2021/resolucao-no-23-669-de-14-de-dezembro-de-2021)
+estabelece o horário de Brasília para as UFs em 2022; a
+[Resolução 23.751/2026, art. 282](https://www.tse.jus.br/legislacao/compilada/res/2026/resolucao-no-23-751-de-26-de-fevereiro-de-2026)
+abrange da abertura das seções à divulgação dos resultados em 2026.
+
+Primeiro recebimento por UF no dia do segundo turno:
+
+| Ano | AC | AM | MT | DF |
+| --- | --- | --- | --- | --- |
+| 2022 | 17:10:07 | 17:03:49 | 17:05:24 | 17:02:09 |
+| 2026 | 17:05:10 | 17:05:10 | 17:05:10 | 17:05:10 |
+
+Os encerramentos registrados nas urnas começam perto de 15h no AC, 15h/16h no
+AM, 16h no MT e 17h no DF. O AM abrange mais de um fuso e `ZZ` abrange muitos:
+não se pode converter horários locais usando apenas a UF.
+`recebido_texto` e `recebido_em_registrado` preservam o dado original;
+`recebido_em` é `TIMESTAMP WITH TIME ZONE`, com interpretação
+`America/Sao_Paulo` (UTC-3 nas datas de 2022/2026). O instante pode aparecer
+em UTC em leitores de Parquet; convertê-lo para Brasília na exibição.
+2018 mantém `recebido_em` nulo: o campo falta no BU. Embora o detalhe oficial
+possua horários de 2018, eles não foram misturados ao horário de BU.
+
+Nos BUs de 2022/2026: zero horários nulos, zero sentinelas, zero inválidos.
+Em 2018, os 454.448 BUs não têm esse campo. As linhas suplementares sem BU
+têm horário nulo por construção e não participam da simulação.
+
+| Ano | Instantes com empate | Seções em empates | Maior grupo no mesmo segundo |
+| --- | ---: | ---: | ---: |
+| 2022 | 9.773 | 470.413 | 379 |
+| 2026 | 3.985 | 498.344 | 402 |
+
+Um timestamp de segundo não permite recuperar a ordem dentro dos empates.
+No Prompt 4, processar os grupos empatados juntos ou declarar um desempate
+determinístico e fazer análise de sensibilidade. Não chamar essa sequência de
+ordem exata de divulgação pública: recebimento, processamento e publicação
+são instantes distintos. Os horários de encerramento também têm anomalias
+pontuais; não foram usados para alterar automaticamente timestamps de chegada.
 
 <!-- inicio:inspecao-download -->
 ## Inspeção dos boletins de urna (Prompt 1)

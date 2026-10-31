@@ -10,7 +10,31 @@ e [docs/FONTES_IBGE.md](docs/FONTES_IBGE.md).
 
 ## Método
 
+O candidato 13 é A nos três anos; B é o candidato 17 em 2018 e o candidato 22
+em 2022/2026. A notação serve para comparar proporções e swings. Textos e
+gráficos usam números ou nomes de forma neutra, sem cores partidárias carregadas.
+
+Os horários de recebimento de 2022 e 2026 coincidem integralmente com o campo
+Hora TSE do detalhe oficial por seção. O método os interpreta como Brasília,
+com apoio nas normas eleitorais e na comparação entre UFs; não aplica ajustes
+por UF. Há muitos boletins empatados no mesmo segundo, portanto a sequência
+de recebimento não determina a ordem dentro desses grupos nem o instante de
+divulgação pública. Veja as evidências e limites em [METODO.md](docs/METODO.md).
+
 ## Resultados
+
+A ingestão reproduziu exatamente os totais oficiais independentes de votos
+por candidato, válidos, brancos, nulos, comparecimento e eleitorado apto.
+
+| Ano | Seções no Parquet | Com BU, para simulação | Sem BU, para conciliação de aptos |
+| --- | ---: | ---: | ---: |
+| 2018 | 454.490 | 454.448 | 42 |
+| 2022 | 472.075 | 472.028 | 47 |
+| 2026 | 499.248 | 499.205 | 43 |
+
+As seções sem BU vieram do detalhe oficial, possuem comparecimento e votos
+zero e estão marcadas com `tem_bu=False` e `apta_simulacao=False`.
+Os resultados de previsão ainda não foram produzidos.
 
 ## Como rodar
 
@@ -21,6 +45,7 @@ uv sync
 uv run python -m apuracao.download --ano 2026
 uv run python -m apuracao.download --ano 2022
 uv run python -m apuracao.download --ano 2018
+uv run python -m apuracao.ingest
 uv run pytest
 ```
 
@@ -31,6 +56,8 @@ os ZIPs são mantidos compactados e conferidos com SHA-512 oficial do TSE.
 O catálogo também é armazenado em cache: as URLs usadas ficam nos manifestos.
 Uma falha HTTP, de JSON ou de integridade interrompe a execução para inspeção.
 
-Os dados ficam fora do Git. Esta etapa apenas baixa e inspeciona amostras; ainda
-não gera dados tratados. A inspeção atual identifica horário de recebimento nos
-BUs de 2022 e 2026; em 2018 o campo está ausente.
+Os dados ficam fora do Git. A ingestão baixa também as fontes oficiais de
+conferência e gera `data/interim/secoes_{ano}.parquet`. Para um único ano,
+use `uv run python -m apuracao.ingest --ano 2026`. O DuckDB instala a extensão
+oficial `encodings` no primeiro uso e a reutiliza do cache. Evidências de
+validação ficam versionadas em [VALIDACAO_INGESTAO.json](docs/VALIDACAO_INGESTAO.json).

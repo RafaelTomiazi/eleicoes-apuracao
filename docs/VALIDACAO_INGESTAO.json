@@ -1,0 +1,3038 @@
+[
+  {
+    "ano": 2018,
+    "totais": {
+      "secoes": 454490,
+      "aptos": 147306294,
+      "comparecimento": 115933451,
+      "votos_A": 47040906,
+      "votos_B": 57797847,
+      "votos_validos": 104838753,
+      "brancos": 2486593,
+      "nulos": 8608105,
+      "secoes_com_bu": 454448,
+      "secoes_exterior": 784
+    },
+    "totais_oficiais": {
+      "aptos": 147306294,
+      "comparecimento": 115933451,
+      "votos_validos": 104838753,
+      "brancos": 2486593,
+      "nulos": 8608105,
+      "aptos_nao_instaladas": 470,
+      "secoes_principais": 454490,
+      "secoes_agregadas": 27370,
+      "secoes_nao_instaladas": 40,
+      "votos_A": 47040906,
+      "votos_B": 57797847
+    },
+    "secoes_sem_bu": 42,
+    "aptos_sem_bu": 1139,
+    "horarios_comparados": 454448,
+    "horarios_iguais_hora_tse": 0,
+    "fuso_recebido": null,
+    "fuso_status": "ausente no BU",
+    "pct_A": 44.86976871996942,
+    "por_uf": [
+      [
+        "AC",
+        1924,
+        null,
+        "2018-10-28 17:00:00",
+        null
+      ],
+      [
+        "AL",
+        6387,
+        null,
+        "2018-10-28 17:00:01",
+        null
+      ],
+      [
+        "AM",
+        7017,
+        null,
+        "2018-10-28 17:00:01",
+        null
+      ],
+      [
+        "AP",
+        1632,
+        null,
+        "2018-10-28 17:00:02",
+        null
+      ],
+      [
+        "BA",
+        31192,
+        null,
+        "2018-10-28 17:00:00",
+        null
+      ],
+      [
+        "CE",
+        21449,
+        null,
+        "2018-10-28 17:00:00",
+        null
+      ],
+      [
+        "DF",
+        6732,
+        null,
+        "2018-10-28 17:00:01",
+        null
+      ],
+      [
+        "ES",
+        8724,
+        null,
+        "2018-10-28 17:00:00",
+        null
+      ],
+      [
+        "GO",
+        13995,
+        null,
+        "2018-10-28 17:00:00",
+        null
+      ],
+      [
+        "MA",
+        15830,
+        null,
+        "2018-10-28 17:00:01",
+        null
+      ],
+      [
+        "MG",
+        48166,
+        null,
+        "2018-10-28 17:00:00",
+        null
+      ],
+      [
+        "MS",
+        6529,
+        null,
+        "2018-10-28 17:00:00",
+        null
+      ],
+      [
+        "MT",
+        7247,
+        null,
+        "2018-10-28 17:00:00",
+        null
+      ],
+      [
+        "PA",
+        17286,
+        null,
+        "2018-10-28 17:00:00",
+        null
+      ],
+      [
+        "PB",
+        9955,
+        null,
+        "2018-10-28 17:00:00",
+        null
+      ],
+      [
+        "PE",
+        19797,
+        null,
+        "2018-10-28 17:00:00",
+        null
+      ],
+      [
+        "PI",
+        8930,
+        null,
+        "2018-10-28 17:00:01",
+        null
+      ],
+      [
+        "PR",
+        26136,
+        null,
+        "2018-10-28 17:00:00",
+        null
+      ],
+      [
+        "RJ",
+        33901,
+        null,
+        "2018-10-28 17:00:00",
+        null
+      ],
+      [
+        "RN",
+        7389,
+        null,
+        "2018-10-28 17:00:01",
+        null
+      ],
+      [
+        "RO",
+        4181,
+        null,
+        "2018-10-28 17:00:01",
+        null
+      ],
+      [
+        "RR",
+        1172,
+        null,
+        "2018-10-28 17:00:01",
+        null
+      ],
+      [
+        "RS",
+        27274,
+        null,
+        "2018-10-28 17:00:00",
+        null
+      ],
+      [
+        "SC",
+        15562,
+        null,
+        "2018-10-28 17:00:00",
+        null
+      ],
+      [
+        "SE",
+        5137,
+        null,
+        "2018-10-28 17:00:00",
+        null
+      ],
+      [
+        "SP",
+        96328,
+        null,
+        "2018-10-28 17:00:00",
+        null
+      ],
+      [
+        "TO",
+        3832,
+        null,
+        "2018-10-28 17:00:00",
+        null
+      ],
+      [
+        "ZZ",
+        744,
+        null,
+        "2018-10-28 17:00:08",
+        null
+      ]
+    ],
+    "ausentes_no_bu": [
+      [
+        "ES",
+        "56227",
+        37,
+        87,
+        334,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "PR",
+        "78573",
+        83,
+        15,
+        335,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "29300",
+        1,
+        6,
+        15,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "29424",
+        1,
+        54,
+        12,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "29424",
+        1,
+        1081,
+        2,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "29637",
+        1,
+        727,
+        195,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "29769",
+        1,
+        126,
+        5,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "29815",
+        1,
+        140,
+        25,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "29823",
+        1,
+        141,
+        17,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "29831",
+        1,
+        1983,
+        12,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "29939",
+        1,
+        152,
+        21,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "29963",
+        1,
+        180,
+        3,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "30171",
+        1,
+        1763,
+        21,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "30295",
+        1,
+        348,
+        10,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "30546",
+        1,
+        1764,
+        16,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "30669",
+        1,
+        546,
+        5,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "30686",
+        1,
+        443,
+        7,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "30929",
+        1,
+        722,
+        3,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "30988",
+        1,
+        725,
+        6,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "30988",
+        1,
+        726,
+        1,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "30988",
+        1,
+        1354,
+        1,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "38881",
+        1,
+        548,
+        8,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "38903",
+        1,
+        603,
+        2,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "38920",
+        1,
+        638,
+        2,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "38989",
+        1,
+        1424,
+        2,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "38989",
+        1,
+        1841,
+        10,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "39187",
+        1,
+        624,
+        2,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "39187",
+        1,
+        1428,
+        1,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "39225",
+        1,
+        931,
+        8,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "39241",
+        1,
+        714,
+        7,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "39263",
+        1,
+        961,
+        7,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "39284",
+        1,
+        773,
+        8,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "99104",
+        1,
+        1011,
+        5,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "99104",
+        1,
+        1427,
+        4,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "99155",
+        1,
+        1504,
+        8,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "99236",
+        1,
+        815,
+        3,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "99341",
+        1,
+        1308,
+        2,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "99341",
+        1,
+        1339,
+        1,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "99350",
+        1,
+        1236,
+        1,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "99376",
+        1,
+        1315,
+        9,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "99406",
+        1,
+        979,
+        2,
+        "#NULO#",
+        "#NULO#"
+      ],
+      [
+        "ZZ",
+        "99422",
+        1,
+        1391,
+        1,
+        "#NULO#",
+        "#NULO#"
+      ]
+    ],
+    "fontes": {
+      "votacao_candidato_munzona": {
+        "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/votacao_candidato_munzona/votacao_candidato_munzona_2018.zip",
+        "csvs": [
+          "votacao_candidato_munzona_2018_BR.csv"
+        ],
+        "colunas": [
+          "DT_GERACAO",
+          "HH_GERACAO",
+          "ANO_ELEICAO",
+          "CD_TIPO_ELEICAO",
+          "NM_TIPO_ELEICAO",
+          "NR_TURNO",
+          "CD_ELEICAO",
+          "DS_ELEICAO",
+          "DT_ELEICAO",
+          "TP_ABRANGENCIA",
+          "SG_UF",
+          "SG_UE",
+          "NM_UE",
+          "CD_MUNICIPIO",
+          "NM_MUNICIPIO",
+          "NR_ZONA",
+          "CD_CARGO",
+          "DS_CARGO",
+          "SQ_CANDIDATO",
+          "NR_CANDIDATO",
+          "NM_CANDIDATO",
+          "NM_URNA_CANDIDATO",
+          "NM_SOCIAL_CANDIDATO",
+          "CD_SITUACAO_CANDIDATURA",
+          "DS_SITUACAO_CANDIDATURA",
+          "CD_DETALHE_SITUACAO_CAND",
+          "DS_DETALHE_SITUACAO_CAND",
+          "CD_SITUACAO_JULGAMENTO",
+          "DS_SITUACAO_JULGAMENTO",
+          "CD_SITUACAO_CASSACAO",
+          "DS_SITUACAO_CASSACAO",
+          "CD_SITUACAO_DIPLOMA",
+          "DS_SITUACAO_DIPLOMA",
+          "TP_AGREMIACAO",
+          "NR_PARTIDO",
+          "SG_PARTIDO",
+          "NM_PARTIDO",
+          "NR_FEDERACAO",
+          "NM_FEDERACAO",
+          "SG_FEDERACAO",
+          "DS_COMPOSICAO_FEDERACAO",
+          "SQ_COLIGACAO",
+          "NM_COLIGACAO",
+          "DS_COMPOSICAO_COLIGACAO",
+          "ST_VOTO_EM_TRANSITO",
+          "QT_VOTOS_NOMINAIS",
+          "NM_TIPO_DESTINACAO_VOTOS",
+          "QT_VOTOS_NOMINAIS_VALIDOS",
+          "CD_SIT_TOT_TURNO",
+          "DS_SIT_TOT_TURNO"
+        ]
+      },
+      "detalhe_votacao_munzona": {
+        "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/detalhe_votacao_munzona/detalhe_votacao_munzona_2018.zip",
+        "csvs": [
+          "detalhe_votacao_munzona_2018_BR.csv"
+        ],
+        "colunas": [
+          "DT_GERACAO",
+          "HH_GERACAO",
+          "ANO_ELEICAO",
+          "CD_TIPO_ELEICAO",
+          "NM_TIPO_ELEICAO",
+          "NR_TURNO",
+          "CD_ELEICAO",
+          "DS_ELEICAO",
+          "DT_ELEICAO",
+          "TP_ABRANGENCIA",
+          "SG_UF",
+          "SG_UE",
+          "NM_UE",
+          "CD_MUNICIPIO",
+          "NM_MUNICIPIO",
+          "NR_ZONA",
+          "CD_CARGO",
+          "DS_CARGO",
+          "QT_APTOS",
+          "QT_SECOES_PRINCIPAIS",
+          "QT_SECOES_AGREGADAS",
+          "QT_SECOES_NAO_INSTALADAS",
+          "QT_TOTAL_SECOES",
+          "QT_COMPARECIMENTO",
+          "QT_ELEITORES_SECOES_NAO_INSTALADAS",
+          "QT_ABSTENCOES",
+          "ST_VOTO_EM_TRANSITO",
+          "QT_VOTOS",
+          "QT_VOTOS_CONCORRENTES",
+          "QT_TOTAL_VOTOS_VALIDOS",
+          "QT_VOTOS_NOMINAIS_VALIDOS",
+          "QT_TOTAL_VOTOS_LEG_VALIDOS",
+          "QT_VOTOS_LEG_VALIDOS",
+          "QT_VOTOS_NOM_CONVR_LEG_VALIDOS",
+          "QT_TOTAL_VOTOS_ANULADOS",
+          "QT_VOTOS_NOMINAIS_ANULADOS",
+          "QT_VOTOS_LEGENDA_ANULADOS",
+          "QT_TOTAL_VOTOS_ANUL_SUBJUD",
+          "QT_VOTOS_NOMINAIS_ANUL_SUBJUD",
+          "QT_VOTOS_LEGENDA_ANUL_SUBJUD",
+          "QT_VOTOS_BRANCOS",
+          "QT_TOTAL_VOTOS_NULOS",
+          "QT_VOTOS_NULOS",
+          "QT_VOTOS_NULOS_TECNICOS",
+          "QT_VOTOS_ANULADOS_APU_SEP",
+          "HH_ULTIMA_TOTALIZACAO",
+          "DT_ULTIMA_TOTALIZACAO"
+        ]
+      },
+      "detalhe_votacao_secao": {
+        "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/detalhe_votacao_secao/detalhe_votacao_secao_2018.zip",
+        "csvs": [
+          "detalhe_votacao_secao_2018_BR.csv"
+        ],
+        "colunas": [
+          "DT_GERACAO",
+          "HH_GERACAO",
+          "ANO_ELEICAO",
+          "CD_TIPO_ELEICAO",
+          "NM_TIPO_ELEICAO",
+          "NR_TURNO",
+          "CD_ELEICAO",
+          "DS_ELEICAO",
+          "DT_ELEICAO",
+          "TP_ABRANGENCIA",
+          "SG_UF",
+          "SG_UE",
+          "NM_UE",
+          "CD_MUNICIPIO",
+          "NM_MUNICIPIO",
+          "NR_ZONA",
+          "NR_SECAO",
+          "CD_CARGO",
+          "DS_CARGO",
+          "QT_APTOS",
+          "QT_COMPARECIMENTO",
+          "QT_ABSTENCOES",
+          "QT_VOTOS_NOMINAIS",
+          "QT_VOTOS_BRANCOS",
+          "QT_VOTOS_NULOS",
+          "QT_VOTOS_LEGENDA",
+          "QT_VOTOS_ANULADOS_APU_SEP",
+          "NR_LOCAL_VOTACAO",
+          "NM_LOCAL_VOTACAO",
+          "DS_LOCAL_VOTACAO_ENDERECO",
+          "DT_RECEBIMENTO_BU_HOR_TSE",
+          "DT_PRIM_TOT_PARCIAL_HOR_TSE",
+          "DS_ORIGEM_VOTO",
+          "ST_SECAO_INSTALADA",
+          "ST_SECAO_ANULADA",
+          "CD_MODELO_URNA",
+          "DS_MODELO_URNA"
+        ]
+      }
+    },
+    "diagnostico_bu": {
+      "ano": 2018,
+      "totais": {
+        "secoes": 454448,
+        "aptos": 147305155,
+        "comparecimento": 115933451,
+        "votos_A": 47040906,
+        "votos_B": 57797847,
+        "votos_validos": 104838753,
+        "brancos": 2486593,
+        "nulos": 8608105,
+        "secoes_exterior": 744,
+        "urnas_com_agregadas": 24161,
+        "horarios_nulos": 454448,
+        "sentinelas": 0,
+        "horarios_invalidos": 0
+      },
+      "empates": {
+        "instantes_empatados": 0,
+        "secoes_em_empates": 0,
+        "maior_empate": 0
+      },
+      "por_uf": [
+        {
+          "uf": "AC",
+          "secoes": 1924,
+          "primeiro_recebido": null,
+          "primeiro_encerramento": "2018-10-28 17:00:00",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "AL",
+          "secoes": 6387,
+          "primeiro_recebido": null,
+          "primeiro_encerramento": "2018-10-28 17:00:01",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "AM",
+          "secoes": 7017,
+          "primeiro_recebido": null,
+          "primeiro_encerramento": "2018-10-28 17:00:01",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "AP",
+          "secoes": 1632,
+          "primeiro_recebido": null,
+          "primeiro_encerramento": "2018-10-28 17:00:02",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "BA",
+          "secoes": 31192,
+          "primeiro_recebido": null,
+          "primeiro_encerramento": "2018-10-28 17:00:00",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "CE",
+          "secoes": 21449,
+          "primeiro_recebido": null,
+          "primeiro_encerramento": "2018-10-28 17:00:00",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "DF",
+          "secoes": 6732,
+          "primeiro_recebido": null,
+          "primeiro_encerramento": "2018-10-28 17:00:01",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "ES",
+          "secoes": 8724,
+          "primeiro_recebido": null,
+          "primeiro_encerramento": "2018-10-28 17:00:00",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "GO",
+          "secoes": 13995,
+          "primeiro_recebido": null,
+          "primeiro_encerramento": "2018-10-28 17:00:00",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "MA",
+          "secoes": 15830,
+          "primeiro_recebido": null,
+          "primeiro_encerramento": "2018-10-28 17:00:01",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "MG",
+          "secoes": 48166,
+          "primeiro_recebido": null,
+          "primeiro_encerramento": "2018-10-28 17:00:00",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "MS",
+          "secoes": 6529,
+          "primeiro_recebido": null,
+          "primeiro_encerramento": "2018-10-28 17:00:00",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "MT",
+          "secoes": 7247,
+          "primeiro_recebido": null,
+          "primeiro_encerramento": "2018-10-28 17:00:00",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "PA",
+          "secoes": 17286,
+          "primeiro_recebido": null,
+          "primeiro_encerramento": "2018-10-28 17:00:00",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "PB",
+          "secoes": 9955,
+          "primeiro_recebido": null,
+          "primeiro_encerramento": "2018-10-28 17:00:00",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "PE",
+          "secoes": 19797,
+          "primeiro_recebido": null,
+          "primeiro_encerramento": "2018-10-28 17:00:00",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "PI",
+          "secoes": 8930,
+          "primeiro_recebido": null,
+          "primeiro_encerramento": "2018-10-28 17:00:01",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "PR",
+          "secoes": 26136,
+          "primeiro_recebido": null,
+          "primeiro_encerramento": "2018-10-28 17:00:00",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "RJ",
+          "secoes": 33901,
+          "primeiro_recebido": null,
+          "primeiro_encerramento": "2018-10-28 17:00:00",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "RN",
+          "secoes": 7389,
+          "primeiro_recebido": null,
+          "primeiro_encerramento": "2018-10-28 17:00:01",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "RO",
+          "secoes": 4181,
+          "primeiro_recebido": null,
+          "primeiro_encerramento": "2018-10-28 17:00:01",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "RR",
+          "secoes": 1172,
+          "primeiro_recebido": null,
+          "primeiro_encerramento": "2018-10-28 17:00:01",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "RS",
+          "secoes": 27274,
+          "primeiro_recebido": null,
+          "primeiro_encerramento": "2018-10-28 17:00:00",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "SC",
+          "secoes": 15562,
+          "primeiro_recebido": null,
+          "primeiro_encerramento": "2018-10-28 17:00:00",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "SE",
+          "secoes": 5137,
+          "primeiro_recebido": null,
+          "primeiro_encerramento": "2018-10-28 17:00:00",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "SP",
+          "secoes": 96328,
+          "primeiro_recebido": null,
+          "primeiro_encerramento": "2018-10-28 17:00:00",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "TO",
+          "secoes": 3832,
+          "primeiro_recebido": null,
+          "primeiro_encerramento": "2018-10-28 17:00:00",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "ZZ",
+          "secoes": 744,
+          "primeiro_recebido": null,
+          "primeiro_encerramento": "2018-10-28 17:00:08",
+          "recebido_antes_encerramento": 0
+        }
+      ]
+    }
+  },
+  {
+    "ano": 2022,
+    "totais": {
+      "secoes": 472075,
+      "aptos": 156454011,
+      "comparecimento": 124252796,
+      "votos_A": 60345999,
+      "votos_B": 58206354,
+      "votos_validos": 118552353,
+      "brancos": 1769678,
+      "nulos": 3930765,
+      "secoes_com_bu": 472028,
+      "secoes_exterior": 1064
+    },
+    "totais_oficiais": {
+      "aptos": 156454011,
+      "comparecimento": 124252796,
+      "votos_validos": 118552353,
+      "brancos": 1769678,
+      "nulos": 3930765,
+      "aptos_nao_instaladas": 657,
+      "secoes_principais": 472075,
+      "secoes_agregadas": 24163,
+      "secoes_nao_instaladas": 47,
+      "votos_A": 60345999,
+      "votos_B": 58206354
+    },
+    "secoes_sem_bu": 47,
+    "aptos_sem_bu": 657,
+    "horarios_comparados": 472028,
+    "horarios_iguais_hora_tse": 472028,
+    "fuso_recebido": "America/Sao_Paulo",
+    "fuso_status": "inferência documentada",
+    "pct_A": 50.90240511717216,
+    "por_uf": [
+      [
+        "AC",
+        2124,
+        "2022-10-30 17:10:07",
+        "2022-10-30 15:00:01",
+        7763.3
+      ],
+      [
+        "AL",
+        6626,
+        "2022-10-30 17:14:26",
+        "2022-10-30 17:00:01",
+        1279.5
+      ],
+      [
+        "AM",
+        7453,
+        "2022-10-30 17:03:49",
+        "2022-10-30 15:00:02",
+        3847.0
+      ],
+      [
+        "AP",
+        1740,
+        "2022-10-30 17:11:41",
+        "2022-10-30 17:00:02",
+        800.0
+      ],
+      [
+        "BA",
+        34424,
+        "2022-10-30 17:06:19",
+        "2022-10-30 17:00:01",
+        976.0
+      ],
+      [
+        "CE",
+        22796,
+        "2022-10-30 17:06:10",
+        "2022-10-30 17:00:01",
+        1230.95
+      ],
+      [
+        "DF",
+        6748,
+        "2022-10-30 17:02:09",
+        "2022-10-30 17:00:02",
+        86.47
+      ],
+      [
+        "ES",
+        9239,
+        "2022-10-30 17:09:45",
+        "2022-10-30 17:00:00",
+        1060.38
+      ],
+      [
+        "GO",
+        14620,
+        "2022-10-30 17:05:40",
+        "2022-10-30 17:00:01",
+        1113.19
+      ],
+      [
+        "MA",
+        16423,
+        "2022-10-30 17:06:54",
+        "2022-10-30 17:00:00",
+        1435.44
+      ],
+      [
+        "MG",
+        49981,
+        "2022-10-30 17:05:41",
+        "2022-10-30 17:00:00",
+        1272.0
+      ],
+      [
+        "MS",
+        6912,
+        "2022-10-30 17:07:07",
+        "2022-10-30 16:00:01",
+        4310.11
+      ],
+      [
+        "MT",
+        7652,
+        "2022-10-30 17:05:24",
+        "2022-10-30 16:00:01",
+        4026.0
+      ],
+      [
+        "PA",
+        18235,
+        "2022-10-30 17:03:56",
+        "2022-10-30 17:00:01",
+        378.0
+      ],
+      [
+        "PB",
+        9602,
+        "2022-10-30 17:07:23",
+        "2022-10-30 17:00:01",
+        695.0
+      ],
+      [
+        "PE",
+        20572,
+        "2022-10-30 17:07:55",
+        "2022-10-30 17:00:01",
+        1379.71
+      ],
+      [
+        "PI",
+        8963,
+        "2022-10-30 17:08:31",
+        "2022-10-30 17:00:01",
+        950.24
+      ],
+      [
+        "PR",
+        25721,
+        "2022-10-30 17:01:41",
+        "2022-10-30 17:00:01",
+        295.0
+      ],
+      [
+        "RJ",
+        34068,
+        "2022-10-30 17:12:55",
+        "2022-10-30 17:00:00",
+        1623.67
+      ],
+      [
+        "RN",
+        7674,
+        "2022-10-30 17:07:18",
+        "2022-10-30 17:00:01",
+        671.9200000000001
+      ],
+      [
+        "RO",
+        4198,
+        "2022-10-30 17:06:59",
+        "2022-10-30 16:00:02",
+        3999.91
+      ],
+      [
+        "RR",
+        1268,
+        "2022-10-30 17:08:05",
+        "2022-10-30 16:00:03",
+        4290.68
+      ],
+      [
+        "RS",
+        27201,
+        "2022-10-30 17:02:51",
+        "2022-10-30 17:00:00",
+        968.0
+      ],
+      [
+        "SC",
+        16242,
+        "2022-10-30 17:06:41",
+        "2022-10-30 17:00:01",
+        1795.82
+      ],
+      [
+        "SE",
+        5498,
+        "2022-10-30 17:20:30",
+        "2022-10-30 17:00:00",
+        1579.61
+      ],
+      [
+        "SP",
+        101073,
+        "2022-10-30 17:06:47",
+        "2022-10-30 17:00:00",
+        1502.0
+      ],
+      [
+        "TO",
+        3957,
+        "2022-10-30 17:03:54",
+        "2022-10-30 17:00:02",
+        347.8
+      ],
+      [
+        "ZZ",
+        1018,
+        "2022-10-30 01:20:48",
+        "2022-10-30 17:00:16",
+        -49238.36
+      ]
+    ],
+    "ausentes_no_bu": [
+      [
+        "AM",
+        "02550",
+        68,
+        797,
+        84,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "29300",
+        1,
+        6,
+        24,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "29424",
+        1,
+        54,
+        11,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "29521",
+        1,
+        83,
+        28,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "29637",
+        1,
+        727,
+        200,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "29769",
+        1,
+        126,
+        6,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "29815",
+        1,
+        140,
+        18,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "29823",
+        1,
+        141,
+        17,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "29831",
+        1,
+        1983,
+        16,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "29858",
+        1,
+        1183,
+        48,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "29939",
+        1,
+        152,
+        20,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "29963",
+        1,
+        180,
+        4,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "30295",
+        1,
+        348,
+        18,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "30669",
+        1,
+        546,
+        7,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "30686",
+        1,
+        443,
+        17,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "30929",
+        1,
+        722,
+        7,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "30988",
+        1,
+        725,
+        10,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "30988",
+        1,
+        1354,
+        1,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "38881",
+        1,
+        548,
+        11,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "38903",
+        1,
+        603,
+        2,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "38920",
+        1,
+        638,
+        5,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "38989",
+        1,
+        1841,
+        11,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "39128",
+        1,
+        3208,
+        2,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "39187",
+        1,
+        624,
+        1,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "39187",
+        1,
+        1428,
+        1,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "39187",
+        1,
+        3011,
+        1,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "39225",
+        1,
+        931,
+        7,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "39241",
+        1,
+        714,
+        9,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "39263",
+        1,
+        961,
+        4,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "39284",
+        1,
+        773,
+        7,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99104",
+        1,
+        1011,
+        4,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99139",
+        1,
+        3120,
+        6,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99147",
+        1,
+        3049,
+        1,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99171",
+        1,
+        3126,
+        2,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99198",
+        1,
+        2947,
+        1,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99210",
+        1,
+        3013,
+        3,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99236",
+        1,
+        815,
+        4,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99236",
+        1,
+        2887,
+        2,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99244",
+        1,
+        2917,
+        5,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99244",
+        1,
+        3101,
+        4,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99252",
+        1,
+        3288,
+        1,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99325",
+        1,
+        3016,
+        2,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99333",
+        1,
+        3188,
+        11,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99341",
+        1,
+        1308,
+        4,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99350",
+        1,
+        1236,
+        1,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99376",
+        1,
+        1315,
+        8,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99384",
+        1,
+        2876,
+        1,
+        "Não",
+        "Não"
+      ]
+    ],
+    "fontes": {
+      "votacao_candidato_munzona": {
+        "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/votacao_candidato_munzona/votacao_candidato_munzona_2022.zip",
+        "csvs": [
+          "votacao_candidato_munzona_2022_BR.csv"
+        ],
+        "colunas": [
+          "DT_GERACAO",
+          "HH_GERACAO",
+          "ANO_ELEICAO",
+          "CD_TIPO_ELEICAO",
+          "NM_TIPO_ELEICAO",
+          "NR_TURNO",
+          "CD_ELEICAO",
+          "DS_ELEICAO",
+          "DT_ELEICAO",
+          "TP_ABRANGENCIA",
+          "SG_UF",
+          "SG_UE",
+          "NM_UE",
+          "CD_MUNICIPIO",
+          "NM_MUNICIPIO",
+          "NR_ZONA",
+          "CD_CARGO",
+          "DS_CARGO",
+          "SQ_CANDIDATO",
+          "NR_CANDIDATO",
+          "NM_CANDIDATO",
+          "NM_URNA_CANDIDATO",
+          "NM_SOCIAL_CANDIDATO",
+          "CD_SITUACAO_CANDIDATURA",
+          "DS_SITUACAO_CANDIDATURA",
+          "CD_DETALHE_SITUACAO_CAND",
+          "DS_DETALHE_SITUACAO_CAND",
+          "CD_SITUACAO_JULGAMENTO",
+          "DS_SITUACAO_JULGAMENTO",
+          "CD_SITUACAO_CASSACAO",
+          "DS_SITUACAO_CASSACAO",
+          "CD_SITUACAO_DCONST_DIPLOMA",
+          "DS_SITUACAO_DCONST_DIPLOMA",
+          "TP_AGREMIACAO",
+          "NR_PARTIDO",
+          "SG_PARTIDO",
+          "NM_PARTIDO",
+          "NR_FEDERACAO",
+          "NM_FEDERACAO",
+          "SG_FEDERACAO",
+          "DS_COMPOSICAO_FEDERACAO",
+          "SQ_COLIGACAO",
+          "NM_COLIGACAO",
+          "DS_COMPOSICAO_COLIGACAO",
+          "ST_VOTO_EM_TRANSITO",
+          "QT_VOTOS_NOMINAIS",
+          "NM_TIPO_DESTINACAO_VOTOS",
+          "QT_VOTOS_NOMINAIS_VALIDOS",
+          "CD_SIT_TOT_TURNO",
+          "DS_SIT_TOT_TURNO"
+        ]
+      },
+      "detalhe_votacao_munzona": {
+        "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/detalhe_votacao_munzona/detalhe_votacao_munzona_2022.zip",
+        "csvs": [
+          "detalhe_votacao_munzona_2022_BR.csv"
+        ],
+        "colunas": [
+          "DT_GERACAO",
+          "HH_GERACAO",
+          "ANO_ELEICAO",
+          "CD_TIPO_ELEICAO",
+          "NM_TIPO_ELEICAO",
+          "NR_TURNO",
+          "CD_ELEICAO",
+          "DS_ELEICAO",
+          "DT_ELEICAO",
+          "TP_ABRANGENCIA",
+          "SG_UF",
+          "SG_UE",
+          "NM_UE",
+          "CD_MUNICIPIO",
+          "NM_MUNICIPIO",
+          "NR_ZONA",
+          "CD_CARGO",
+          "DS_CARGO",
+          "QT_APTOS",
+          "QT_SECOES_PRINCIPAIS",
+          "QT_SECOES_AGREGADAS",
+          "QT_SECOES_NAO_INSTALADAS",
+          "QT_TOTAL_SECOES",
+          "QT_COMPARECIMENTO",
+          "QT_ELEITORES_SECOES_NAO_INSTALADAS",
+          "QT_ABSTENCOES",
+          "ST_VOTO_EM_TRANSITO",
+          "QT_VOTOS",
+          "QT_VOTOS_CONCORRENTES",
+          "QT_TOTAL_VOTOS_VALIDOS",
+          "QT_VOTOS_NOMINAIS_VALIDOS",
+          "QT_TOTAL_VOTOS_LEG_VALIDOS",
+          "QT_VOTOS_LEG_VALIDOS",
+          "QT_VOTOS_NOM_CONVR_LEG_VALIDOS",
+          "QT_TOTAL_VOTOS_ANULADOS",
+          "QT_VOTOS_NOMINAIS_ANULADOS",
+          "QT_VOTOS_LEGENDA_ANULADOS",
+          "QT_TOTAL_VOTOS_ANUL_SUBJUD",
+          "QT_VOTOS_NOMINAIS_ANUL_SUBJUD",
+          "QT_VOTOS_LEGENDA_ANUL_SUBJUD",
+          "QT_VOTOS_BRANCOS",
+          "QT_TOTAL_VOTOS_NULOS",
+          "QT_VOTOS_NULOS",
+          "QT_VOTOS_NULOS_TECNICOS",
+          "QT_VOTOS_ANULADOS_APU_SEP",
+          "HH_ULTIMA_TOTALIZACAO",
+          "DT_ULTIMA_TOTALIZACAO"
+        ]
+      },
+      "detalhe_votacao_secao": {
+        "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/detalhe_votacao_secao/detalhe_votacao_secao_2022.zip",
+        "csvs": [
+          "detalhe_votacao_secao_2022_BR.csv"
+        ],
+        "colunas": [
+          "DT_GERACAO",
+          "HH_GERACAO",
+          "ANO_ELEICAO",
+          "CD_TIPO_ELEICAO",
+          "NM_TIPO_ELEICAO",
+          "NR_TURNO",
+          "CD_ELEICAO",
+          "DS_ELEICAO",
+          "DT_ELEICAO",
+          "TP_ABRANGENCIA",
+          "SG_UF",
+          "SG_UE",
+          "NM_UE",
+          "CD_MUNICIPIO",
+          "NM_MUNICIPIO",
+          "NR_ZONA",
+          "NR_SECAO",
+          "CD_CARGO",
+          "DS_CARGO",
+          "QT_APTOS",
+          "QT_COMPARECIMENTO",
+          "QT_ABSTENCOES",
+          "QT_VOTOS_NOMINAIS",
+          "QT_VOTOS_BRANCOS",
+          "QT_VOTOS_NULOS",
+          "QT_VOTOS_LEGENDA",
+          "QT_VOTOS_ANULADOS_APU_SEP",
+          "NR_LOCAL_VOTACAO",
+          "NM_LOCAL_VOTACAO",
+          "DS_LOCAL_VOTACAO_ENDERECO",
+          "DT_RECEBIMENTO_BU_HOR_TSE",
+          "DT_PRIM_TOT_PARCIAL_HOR_TSE",
+          "DS_ORIGEM_VOTO",
+          "ST_SECAO_INSTALADA",
+          "ST_SECAO_ANULADA",
+          "CD_MODELO_URNA",
+          "DS_MODELO_URNA"
+        ]
+      }
+    },
+    "diagnostico_bu": {
+      "ano": 2022,
+      "totais": {
+        "secoes": 472028,
+        "aptos": 156453354,
+        "comparecimento": 124252796,
+        "votos_A": 60345999,
+        "votos_B": 58206354,
+        "votos_validos": 118552353,
+        "brancos": 1769678,
+        "nulos": 3930765,
+        "secoes_exterior": 1018,
+        "urnas_com_agregadas": 21467,
+        "horarios_nulos": 0,
+        "sentinelas": 0,
+        "horarios_invalidos": 0
+      },
+      "empates": {
+        "instantes_empatados": 9773,
+        "secoes_em_empates": 470413,
+        "maior_empate": 379
+      },
+      "por_uf": [
+        {
+          "uf": "AC",
+          "secoes": 2124,
+          "primeiro_recebido": "2022-10-30 17:10:07",
+          "primeiro_encerramento": "2022-10-30 15:00:01",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "AL",
+          "secoes": 6626,
+          "primeiro_recebido": "2022-10-30 17:14:26",
+          "primeiro_encerramento": "2022-10-30 17:00:01",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "AM",
+          "secoes": 7453,
+          "primeiro_recebido": "2022-10-30 17:03:49",
+          "primeiro_encerramento": "2022-10-30 15:00:02",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "AP",
+          "secoes": 1740,
+          "primeiro_recebido": "2022-10-30 17:11:41",
+          "primeiro_encerramento": "2022-10-30 17:00:02",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "BA",
+          "secoes": 34424,
+          "primeiro_recebido": "2022-10-30 17:06:19",
+          "primeiro_encerramento": "2022-10-30 17:00:01",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "CE",
+          "secoes": 22796,
+          "primeiro_recebido": "2022-10-30 17:06:10",
+          "primeiro_encerramento": "2022-10-30 17:00:01",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "DF",
+          "secoes": 6748,
+          "primeiro_recebido": "2022-10-30 17:02:09",
+          "primeiro_encerramento": "2022-10-30 17:00:02",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "ES",
+          "secoes": 9239,
+          "primeiro_recebido": "2022-10-30 17:09:45",
+          "primeiro_encerramento": "2022-10-30 17:00:00",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "GO",
+          "secoes": 14620,
+          "primeiro_recebido": "2022-10-30 17:05:40",
+          "primeiro_encerramento": "2022-10-30 17:00:01",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "MA",
+          "secoes": 16423,
+          "primeiro_recebido": "2022-10-30 17:06:54",
+          "primeiro_encerramento": "2022-10-30 17:00:00",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "MG",
+          "secoes": 49981,
+          "primeiro_recebido": "2022-10-30 17:05:41",
+          "primeiro_encerramento": "2022-10-30 17:00:00",
+          "recebido_antes_encerramento": 1
+        },
+        {
+          "uf": "MS",
+          "secoes": 6912,
+          "primeiro_recebido": "2022-10-30 17:07:07",
+          "primeiro_encerramento": "2022-10-30 16:00:01",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "MT",
+          "secoes": 7652,
+          "primeiro_recebido": "2022-10-30 17:05:24",
+          "primeiro_encerramento": "2022-10-30 16:00:01",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "PA",
+          "secoes": 18235,
+          "primeiro_recebido": "2022-10-30 17:03:56",
+          "primeiro_encerramento": "2022-10-30 17:00:01",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "PB",
+          "secoes": 9602,
+          "primeiro_recebido": "2022-10-30 17:07:23",
+          "primeiro_encerramento": "2022-10-30 17:00:01",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "PE",
+          "secoes": 20572,
+          "primeiro_recebido": "2022-10-30 17:07:55",
+          "primeiro_encerramento": "2022-10-30 17:00:01",
+          "recebido_antes_encerramento": 9
+        },
+        {
+          "uf": "PI",
+          "secoes": 8963,
+          "primeiro_recebido": "2022-10-30 17:08:31",
+          "primeiro_encerramento": "2022-10-30 17:00:01",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "PR",
+          "secoes": 25721,
+          "primeiro_recebido": "2022-10-30 17:01:41",
+          "primeiro_encerramento": "2022-10-30 17:00:01",
+          "recebido_antes_encerramento": 1
+        },
+        {
+          "uf": "RJ",
+          "secoes": 34068,
+          "primeiro_recebido": "2022-10-30 17:12:55",
+          "primeiro_encerramento": "2022-10-30 17:00:00",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "RN",
+          "secoes": 7674,
+          "primeiro_recebido": "2022-10-30 17:07:18",
+          "primeiro_encerramento": "2022-10-30 17:00:01",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "RO",
+          "secoes": 4198,
+          "primeiro_recebido": "2022-10-30 17:06:59",
+          "primeiro_encerramento": "2022-10-30 16:00:02",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "RR",
+          "secoes": 1268,
+          "primeiro_recebido": "2022-10-30 17:08:05",
+          "primeiro_encerramento": "2022-10-30 16:00:03",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "RS",
+          "secoes": 27201,
+          "primeiro_recebido": "2022-10-30 17:02:51",
+          "primeiro_encerramento": "2022-10-30 17:00:00",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "SC",
+          "secoes": 16242,
+          "primeiro_recebido": "2022-10-30 17:06:41",
+          "primeiro_encerramento": "2022-10-30 17:00:01",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "SE",
+          "secoes": 5498,
+          "primeiro_recebido": "2022-10-30 17:20:30",
+          "primeiro_encerramento": "2022-10-30 17:00:00",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "SP",
+          "secoes": 101073,
+          "primeiro_recebido": "2022-10-30 17:06:47",
+          "primeiro_encerramento": "2022-10-30 17:00:00",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "TO",
+          "secoes": 3957,
+          "primeiro_recebido": "2022-10-30 17:03:54",
+          "primeiro_encerramento": "2022-10-30 17:00:02",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "ZZ",
+          "secoes": 1018,
+          "primeiro_recebido": "2022-10-30 01:20:48",
+          "primeiro_encerramento": "2022-10-30 17:00:16",
+          "recebido_antes_encerramento": 575
+        }
+      ]
+    }
+  },
+  {
+    "ano": 2026,
+    "totais": {
+      "secoes": 499248,
+      "aptos": 158745502,
+      "comparecimento": 128236074,
+      "votos_A": 64256232,
+      "votos_B": 59826041,
+      "votos_validos": 124082273,
+      "brancos": 1430496,
+      "nulos": 2723305,
+      "secoes_com_bu": 499205,
+      "secoes_exterior": 1351
+    },
+    "totais_oficiais": {
+      "aptos": 158745502,
+      "comparecimento": 128236074,
+      "votos_validos": 124082273,
+      "brancos": 1430496,
+      "nulos": 2723305,
+      "aptos_nao_instaladas": 423,
+      "secoes_principais": 499248,
+      "secoes_agregadas": 17931,
+      "secoes_nao_instaladas": 41,
+      "votos_A": 64256232,
+      "votos_B": 59826041
+    },
+    "secoes_sem_bu": 43,
+    "aptos_sem_bu": 525,
+    "horarios_comparados": 499205,
+    "horarios_iguais_hora_tse": 499205,
+    "fuso_recebido": "America/Sao_Paulo",
+    "fuso_status": "inferência documentada",
+    "pct_A": 51.7851828842626,
+    "por_uf": [
+      [
+        "AC",
+        2270,
+        "2026-10-25 17:05:10",
+        "2026-10-25 15:00:13",
+        7482.38
+      ],
+      [
+        "AL",
+        7101,
+        "2026-10-25 17:05:21",
+        "2026-10-25 17:00:16",
+        7977.0
+      ],
+      [
+        "AM",
+        8157,
+        "2026-10-25 17:05:10",
+        "2026-10-25 15:00:24",
+        3850.56
+      ],
+      [
+        "AP",
+        1914,
+        "2026-10-25 17:05:10",
+        "2026-10-25 17:00:13",
+        7191.04
+      ],
+      [
+        "BA",
+        35476,
+        "2026-10-25 17:05:10",
+        "2026-10-25 17:00:10",
+        7039.0
+      ],
+      [
+        "CE",
+        23765,
+        "2026-10-25 17:05:10",
+        "2026-10-25 17:00:12",
+        8916.2
+      ],
+      [
+        "DF",
+        6969,
+        "2026-10-25 17:05:10",
+        "2026-10-25 17:00:15",
+        195.0
+      ],
+      [
+        "ES",
+        9844,
+        "2026-10-25 17:06:29",
+        "2026-10-25 17:00:12",
+        8687.01
+      ],
+      [
+        "GO",
+        15686,
+        "2026-10-25 17:05:10",
+        "2026-10-25 17:00:12",
+        8754.85
+      ],
+      [
+        "MA",
+        18093,
+        "2026-10-25 17:05:10",
+        "2026-10-25 17:00:16",
+        7249.92
+      ],
+      [
+        "MG",
+        52062,
+        "2026-10-25 17:05:10",
+        "2026-10-25 17:00:11",
+        7849.0
+      ],
+      [
+        "MS",
+        7106,
+        "2026-10-25 17:06:49",
+        "2026-10-25 16:00:14",
+        11635.3
+      ],
+      [
+        "MT",
+        8287,
+        "2026-10-25 17:05:10",
+        "2026-10-25 16:00:10",
+        10758.0
+      ],
+      [
+        "PA",
+        20827,
+        "2026-10-25 17:05:10",
+        "2026-10-25 17:00:10",
+        301.0
+      ],
+      [
+        "PB",
+        10712,
+        "2026-10-25 17:05:28",
+        "2026-10-25 17:00:12",
+        6960.0
+      ],
+      [
+        "PE",
+        21418,
+        "2026-10-25 17:07:00",
+        "2026-10-25 17:00:11",
+        7079.0
+      ],
+      [
+        "PI",
+        10225,
+        "2026-10-25 17:07:01",
+        "2026-10-25 17:00:09",
+        8437.68
+      ],
+      [
+        "PR",
+        27142,
+        "2026-10-25 17:05:10",
+        "2026-10-25 17:00:11",
+        7128.0
+      ],
+      [
+        "RJ",
+        37675,
+        "2026-10-25 19:03:38",
+        "2026-10-25 17:00:13",
+        7194.74
+      ],
+      [
+        "RN",
+        8115,
+        "2026-10-25 17:06:41",
+        "2026-10-25 17:00:14",
+        7502.08
+      ],
+      [
+        "RO",
+        4698,
+        "2026-10-25 17:05:10",
+        "2026-10-25 16:00:17",
+        10539.94
+      ],
+      [
+        "RR",
+        1519,
+        "2026-10-25 17:05:10",
+        "2026-10-25 16:00:18",
+        10807.18
+      ],
+      [
+        "RS",
+        27547,
+        "2026-10-25 17:06:12",
+        "2026-10-25 17:00:12",
+        8409.460000000001
+      ],
+      [
+        "SC",
+        17326,
+        "2026-10-25 17:05:10",
+        "2026-10-25 17:00:09",
+        7264.0
+      ],
+      [
+        "SE",
+        5923,
+        "2026-10-25 19:34:10",
+        "2026-10-25 17:00:10",
+        9203.64
+      ],
+      [
+        "SP",
+        103656,
+        "2026-10-25 19:03:38",
+        "2026-10-25 17:00:09",
+        7515.0
+      ],
+      [
+        "TO",
+        4384,
+        "2026-10-25 17:05:31",
+        "2026-10-25 17:00:16",
+        7141.83
+      ],
+      [
+        "ZZ",
+        1308,
+        "2026-10-25 17:05:10",
+        "2026-10-25 17:00:21",
+        -912.0
+      ]
+    ],
+    "ausentes_no_bu": [
+      [
+        "ZZ",
+        "29424",
+        1,
+        54,
+        22,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "29521",
+        1,
+        83,
+        27,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "29564",
+        1,
+        91,
+        72,
+        "Sim",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "29629",
+        1,
+        3014,
+        1,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "29769",
+        1,
+        126,
+        7,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "29815",
+        1,
+        140,
+        14,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "29823",
+        1,
+        141,
+        17,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "29831",
+        1,
+        1983,
+        18,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "29874",
+        1,
+        146,
+        27,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "29939",
+        1,
+        152,
+        18,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "29963",
+        1,
+        180,
+        7,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "30669",
+        1,
+        546,
+        10,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "30686",
+        1,
+        443,
+        30,
+        "Sim",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "30929",
+        1,
+        722,
+        12,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "30988",
+        1,
+        725,
+        9,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "30988",
+        1,
+        1354,
+        2,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "38881",
+        1,
+        548,
+        13,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "38903",
+        1,
+        603,
+        5,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "38920",
+        1,
+        638,
+        8,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "38989",
+        1,
+        1841,
+        13,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "39128",
+        1,
+        3208,
+        5,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "39187",
+        1,
+        624,
+        2,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "39225",
+        1,
+        931,
+        18,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "39241",
+        1,
+        714,
+        13,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "39263",
+        1,
+        961,
+        5,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "39284",
+        1,
+        773,
+        6,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99104",
+        1,
+        1011,
+        29,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99139",
+        1,
+        3120,
+        9,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99147",
+        1,
+        3049,
+        1,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99171",
+        1,
+        3126,
+        10,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99198",
+        1,
+        2947,
+        3,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99210",
+        1,
+        3013,
+        1,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99236",
+        1,
+        815,
+        8,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99244",
+        1,
+        2917,
+        19,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99279",
+        1,
+        3698,
+        1,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99287",
+        1,
+        1259,
+        25,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99295",
+        1,
+        3485,
+        1,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99325",
+        1,
+        3016,
+        3,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99333",
+        1,
+        3188,
+        10,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99341",
+        1,
+        1308,
+        6,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99350",
+        1,
+        1236,
+        5,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99376",
+        1,
+        1315,
+        6,
+        "Não",
+        "Não"
+      ],
+      [
+        "ZZ",
+        "99384",
+        1,
+        2876,
+        7,
+        "Não",
+        "Não"
+      ]
+    ],
+    "fontes": {
+      "votacao_candidato_munzona": {
+        "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/votacao_candidato_munzona/votacao_candidato_munzona_2026.zip",
+        "csvs": [
+          "votacao_candidato_munzona_2026_BR.csv"
+        ],
+        "colunas": [
+          "DT_GERACAO",
+          "HH_GERACAO",
+          "ANO_ELEICAO",
+          "CD_TIPO_ELEICAO",
+          "NM_TIPO_ELEICAO",
+          "NR_TURNO",
+          "CD_ELEICAO",
+          "DS_ELEICAO",
+          "DT_ELEICAO",
+          "TP_ABRANGENCIA",
+          "SG_UF",
+          "SG_UE",
+          "NM_UE",
+          "CD_MUNICIPIO",
+          "NM_MUNICIPIO",
+          "NR_ZONA",
+          "CD_CARGO",
+          "DS_CARGO",
+          "SQ_CANDIDATO",
+          "NR_CANDIDATO",
+          "NM_CANDIDATO",
+          "NM_URNA_CANDIDATO",
+          "NM_SOCIAL_CANDIDATO",
+          "CD_SITUACAO_CANDIDATURA",
+          "DS_SITUACAO_CANDIDATURA",
+          "CD_DETALHE_SITUACAO_CAND",
+          "DS_DETALHE_SITUACAO_CAND",
+          "CD_SITUACAO_JULGAMENTO",
+          "DS_SITUACAO_JULGAMENTO",
+          "CD_SITUACAO_CASSACAO",
+          "DS_SITUACAO_CASSACAO",
+          "CD_SITUACAO_DCONST_DIPLOMA",
+          "DS_SITUACAO_DCONST_DIPLOMA",
+          "TP_AGREMIACAO",
+          "NR_PARTIDO",
+          "SG_PARTIDO",
+          "NM_PARTIDO",
+          "NR_FEDERACAO",
+          "NM_FEDERACAO",
+          "SG_FEDERACAO",
+          "DS_COMPOSICAO_FEDERACAO",
+          "SQ_COLIGACAO",
+          "NM_COLIGACAO",
+          "DS_COMPOSICAO_COLIGACAO",
+          "ST_VOTO_EM_TRANSITO",
+          "QT_VOTOS_NOMINAIS",
+          "NM_TIPO_DESTINACAO_VOTOS",
+          "QT_VOTOS_NOMINAIS_VALIDOS",
+          "CD_SIT_TOT_TURNO",
+          "DS_SIT_TOT_TURNO"
+        ]
+      },
+      "detalhe_votacao_munzona": {
+        "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/detalhe_votacao_munzona/detalhe_votacao_munzona_2026.zip",
+        "csvs": [
+          "detalhe_votacao_munzona_2026_BR.csv"
+        ],
+        "colunas": [
+          "DT_GERACAO",
+          "HH_GERACAO",
+          "ANO_ELEICAO",
+          "CD_TIPO_ELEICAO",
+          "NM_TIPO_ELEICAO",
+          "NR_TURNO",
+          "CD_ELEICAO",
+          "DS_ELEICAO",
+          "DT_ELEICAO",
+          "TP_ABRANGENCIA",
+          "SG_UF",
+          "SG_UE",
+          "NM_UE",
+          "CD_MUNICIPIO",
+          "NM_MUNICIPIO",
+          "NR_ZONA",
+          "CD_CARGO",
+          "DS_CARGO",
+          "QT_APTOS",
+          "QT_SECOES_PRINCIPAIS",
+          "QT_SECOES_AGREGADAS",
+          "QT_SECOES_NAO_INSTALADAS",
+          "QT_TOTAL_SECOES",
+          "QT_COMPARECIMENTO",
+          "QT_ELEITORES_SECOES_NAO_INSTALADAS",
+          "QT_ABSTENCOES",
+          "ST_VOTO_EM_TRANSITO",
+          "QT_VOTOS",
+          "QT_VOTOS_CONCORRENTES",
+          "QT_TOTAL_VOTOS_VALIDOS",
+          "QT_VOTOS_NOMINAIS_VALIDOS",
+          "QT_TOTAL_VOTOS_LEG_VALIDOS",
+          "QT_VOTOS_LEG_VALIDOS",
+          "QT_VOTOS_NOM_CONVR_LEG_VALIDOS",
+          "QT_TOTAL_VOTOS_ANULADOS",
+          "QT_VOTOS_NOMINAIS_ANULADOS",
+          "QT_VOTOS_LEGENDA_ANULADOS",
+          "QT_TOTAL_VOTOS_ANUL_SUBJUD",
+          "QT_VOTOS_NOMINAIS_ANUL_SUBJUD",
+          "QT_VOTOS_LEGENDA_ANUL_SUBJUD",
+          "QT_VOTOS_BRANCOS",
+          "QT_TOTAL_VOTOS_NULOS",
+          "QT_VOTOS_NULOS",
+          "QT_VOTOS_NULOS_TECNICOS",
+          "QT_VOTOS_ANULADOS_APU_SEP",
+          "HH_ULTIMA_TOTALIZACAO",
+          "DT_ULTIMA_TOTALIZACAO"
+        ]
+      },
+      "detalhe_votacao_secao": {
+        "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/detalhe_votacao_secao/detalhe_votacao_secao_2026.zip",
+        "csvs": [
+          "detalhe_votacao_secao_2026_BR.csv"
+        ],
+        "colunas": [
+          "DT_GERACAO",
+          "HH_GERACAO",
+          "ANO_ELEICAO",
+          "CD_TIPO_ELEICAO",
+          "NM_TIPO_ELEICAO",
+          "NR_TURNO",
+          "CD_ELEICAO",
+          "DS_ELEICAO",
+          "DT_ELEICAO",
+          "TP_ABRANGENCIA",
+          "SG_UF",
+          "SG_UE",
+          "NM_UE",
+          "CD_MUNICIPIO",
+          "NM_MUNICIPIO",
+          "NR_ZONA",
+          "NR_SECAO",
+          "CD_CARGO",
+          "DS_CARGO",
+          "QT_APTOS",
+          "QT_COMPARECIMENTO",
+          "QT_ABSTENCOES",
+          "QT_VOTOS_NOMINAIS",
+          "QT_VOTOS_BRANCOS",
+          "QT_VOTOS_NULOS",
+          "QT_VOTOS_LEGENDA",
+          "QT_VOTOS_ANULADOS_APU_SEP",
+          "NR_LOCAL_VOTACAO",
+          "NM_LOCAL_VOTACAO",
+          "DS_LOCAL_VOTACAO_ENDERECO",
+          "DT_RECEBIMENTO_BU_HOR_TSE",
+          "DT_PRIM_TOT_PARCIAL_HOR_TSE",
+          "DS_ORIGEM_VOTO",
+          "ST_SECAO_INSTALADA",
+          "ST_SECAO_ANULADA",
+          "CD_MODELO_URNA",
+          "DS_MODELO_URNA"
+        ]
+      }
+    },
+    "diagnostico_bu": {
+      "ano": 2026,
+      "totais": {
+        "secoes": 499205,
+        "aptos": 158744977,
+        "comparecimento": 128236074,
+        "votos_A": 64256232,
+        "votos_B": 59826041,
+        "votos_validos": 124082273,
+        "brancos": 1430496,
+        "nulos": 2723305,
+        "secoes_exterior": 1308,
+        "urnas_com_agregadas": 16142,
+        "horarios_nulos": 0,
+        "sentinelas": 0,
+        "horarios_invalidos": 0
+      },
+      "empates": {
+        "instantes_empatados": 3985,
+        "secoes_em_empates": 498344,
+        "maior_empate": 402
+      },
+      "por_uf": [
+        {
+          "uf": "AC",
+          "secoes": 2270,
+          "primeiro_recebido": "2026-10-25 17:05:10",
+          "primeiro_encerramento": "2026-10-25 15:00:13",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "AL",
+          "secoes": 7101,
+          "primeiro_recebido": "2026-10-25 17:05:21",
+          "primeiro_encerramento": "2026-10-25 17:00:16",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "AM",
+          "secoes": 8157,
+          "primeiro_recebido": "2026-10-25 17:05:10",
+          "primeiro_encerramento": "2026-10-25 15:00:24",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "AP",
+          "secoes": 1914,
+          "primeiro_recebido": "2026-10-25 17:05:10",
+          "primeiro_encerramento": "2026-10-25 17:00:13",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "BA",
+          "secoes": 35476,
+          "primeiro_recebido": "2026-10-25 17:05:10",
+          "primeiro_encerramento": "2026-10-25 17:00:10",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "CE",
+          "secoes": 23765,
+          "primeiro_recebido": "2026-10-25 17:05:10",
+          "primeiro_encerramento": "2026-10-25 17:00:12",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "DF",
+          "secoes": 6969,
+          "primeiro_recebido": "2026-10-25 17:05:10",
+          "primeiro_encerramento": "2026-10-25 17:00:15",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "ES",
+          "secoes": 9844,
+          "primeiro_recebido": "2026-10-25 17:06:29",
+          "primeiro_encerramento": "2026-10-25 17:00:12",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "GO",
+          "secoes": 15686,
+          "primeiro_recebido": "2026-10-25 17:05:10",
+          "primeiro_encerramento": "2026-10-25 17:00:12",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "MA",
+          "secoes": 18093,
+          "primeiro_recebido": "2026-10-25 17:05:10",
+          "primeiro_encerramento": "2026-10-25 17:00:16",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "MG",
+          "secoes": 52062,
+          "primeiro_recebido": "2026-10-25 17:05:10",
+          "primeiro_encerramento": "2026-10-25 17:00:11",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "MS",
+          "secoes": 7106,
+          "primeiro_recebido": "2026-10-25 17:06:49",
+          "primeiro_encerramento": "2026-10-25 16:00:14",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "MT",
+          "secoes": 8287,
+          "primeiro_recebido": "2026-10-25 17:05:10",
+          "primeiro_encerramento": "2026-10-25 16:00:10",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "PA",
+          "secoes": 20827,
+          "primeiro_recebido": "2026-10-25 17:05:10",
+          "primeiro_encerramento": "2026-10-25 17:00:10",
+          "recebido_antes_encerramento": 1
+        },
+        {
+          "uf": "PB",
+          "secoes": 10712,
+          "primeiro_recebido": "2026-10-25 17:05:28",
+          "primeiro_encerramento": "2026-10-25 17:00:12",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "PE",
+          "secoes": 21418,
+          "primeiro_recebido": "2026-10-25 17:07:00",
+          "primeiro_encerramento": "2026-10-25 17:00:11",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "PI",
+          "secoes": 10225,
+          "primeiro_recebido": "2026-10-25 17:07:01",
+          "primeiro_encerramento": "2026-10-25 17:00:09",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "PR",
+          "secoes": 27142,
+          "primeiro_recebido": "2026-10-25 17:05:10",
+          "primeiro_encerramento": "2026-10-25 17:00:11",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "RJ",
+          "secoes": 37675,
+          "primeiro_recebido": "2026-10-25 19:03:38",
+          "primeiro_encerramento": "2026-10-25 17:00:13",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "RN",
+          "secoes": 8115,
+          "primeiro_recebido": "2026-10-25 17:06:41",
+          "primeiro_encerramento": "2026-10-25 17:00:14",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "RO",
+          "secoes": 4698,
+          "primeiro_recebido": "2026-10-25 17:05:10",
+          "primeiro_encerramento": "2026-10-25 16:00:17",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "RR",
+          "secoes": 1519,
+          "primeiro_recebido": "2026-10-25 17:05:10",
+          "primeiro_encerramento": "2026-10-25 16:00:18",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "RS",
+          "secoes": 27547,
+          "primeiro_recebido": "2026-10-25 17:06:12",
+          "primeiro_encerramento": "2026-10-25 17:00:12",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "SC",
+          "secoes": 17326,
+          "primeiro_recebido": "2026-10-25 17:05:10",
+          "primeiro_encerramento": "2026-10-25 17:00:09",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "SE",
+          "secoes": 5923,
+          "primeiro_recebido": "2026-10-25 19:34:10",
+          "primeiro_encerramento": "2026-10-25 17:00:10",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "SP",
+          "secoes": 103656,
+          "primeiro_recebido": "2026-10-25 19:03:38",
+          "primeiro_encerramento": "2026-10-25 17:00:09",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "TO",
+          "secoes": 4384,
+          "primeiro_recebido": "2026-10-25 17:05:31",
+          "primeiro_encerramento": "2026-10-25 17:00:16",
+          "recebido_antes_encerramento": 0
+        },
+        {
+          "uf": "ZZ",
+          "secoes": 1308,
+          "primeiro_recebido": "2026-10-25 17:05:10",
+          "primeiro_encerramento": "2026-10-25 17:00:21",
+          "recebido_antes_encerramento": 472
+        }
+      ]
+    }
+  }
+]
