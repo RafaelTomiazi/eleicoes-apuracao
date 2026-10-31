@@ -990,7 +990,8 @@
           "primeiro_encerramento": "2018-10-28 17:00:08",
           "recebido_antes_encerramento": 0
         }
-      ]
+      ],
+      "fase": "agregação BU; atribuição de fuso registrada em validacao_{ano}.json"
     }
   },
   {
@@ -2029,7 +2030,8 @@
           "primeiro_encerramento": "2022-10-30 17:00:16",
           "recebido_antes_encerramento": 575
         }
-      ]
+      ],
+      "fase": "agregação BU; atribuição de fuso registrada em validacao_{ano}.json"
     }
   },
   {
@@ -3032,7 +3034,8 @@
           "primeiro_encerramento": "2026-10-25 17:00:21",
           "recebido_antes_encerramento": 472
         }
-      ]
+      ],
+      "fase": "agregação BU; atribuição de fuso registrada em validacao_{ano}.json"
     }
   }
 ]

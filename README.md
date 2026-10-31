@@ -2,6 +2,12 @@
 
 ## Pergunta
 
+Quem ganha com 30% das urnas apuradas?
+
+O projeto investiga quanto já é possível estimar do resultado final e da
+incerteza durante a apuração. As previsões ainda serão avaliadas, incluindo
+um backtest de 2022 com base histórica de 2018.
+
 ## Dados
 
 Boletins de urna oficiais do TSE de 2018, 2022 e 2026 e indicadores municipais do IBGE.
@@ -36,6 +42,11 @@ As seções sem BU vieram do detalhe oficial, possuem comparecimento e votos
 zero e estão marcadas com `tem_bu=False` e `apta_simulacao=False`.
 Os resultados de previsão ainda não foram produzidos.
 
+O pareamento por seção ou local de votação cobre **98,9102% dos aptos de 2022**
+(base 2018) e **97,6169% dos aptos de 2026** (base 2022). Os demais usam zona,
+município ou UF. Essas coberturas medem disponibilidade da base histórica;
+a precisão das projeções será medida no backtest.
+
 ## Como rodar
 
 Com Python 3.12 e uv instalados, na raiz do projeto:
@@ -46,6 +57,7 @@ uv run python -m apuracao.download --ano 2026
 uv run python -m apuracao.download --ano 2022
 uv run python -m apuracao.download --ano 2018
 uv run python -m apuracao.ingest
+uv run python -m apuracao.match
 uv run pytest
 ```
 

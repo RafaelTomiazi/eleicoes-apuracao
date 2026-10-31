@@ -43,7 +43,8 @@ def finalize_year(year: int, root: Path = ROOT) -> dict[str, Any]:
         received = f"timezone('{zone}', b.recebido_em_registrado)" if zone else "NULL::TIMESTAMPTZ"
         connection.execute(f"""
           CREATE TEMP TABLE final AS SELECT
-            d.uf,d.cod_municipio,d.nome_municipio,d.zona,d.secao,d.aptos,
+            d.uf,d.cod_municipio,d.nome_municipio,d.zona,d.secao,
+            CASE WHEN b.uf IS NOT NULL THEN b.local_votacao ELSE d.local_votacao END AS local_votacao,d.aptos,
             coalesce(b.comparecimento,0)::BIGINT AS comparecimento,
             d.aptos-coalesce(b.comparecimento,0)::BIGINT AS abstencoes,
             coalesce(b.votos_A,0)::BIGINT AS votos_A,coalesce(b.votos_B,0)::BIGINT AS votos_B,

@@ -47,7 +47,7 @@ O texto de seções agregadas é preservado e não explode em linhas adicionais:
 os votos e eleitores já pertencem à seção principal da urna.
 
 Saídas: `data/interim/secoes_{ano}.parquet`, com `uf`, `cod_municipio`,
-`nome_municipio`, `zona`, `secao`, `aptos`, `comparecimento`, `abstencoes`,
+`nome_municipio`, `zona`, `secao`, `local_votacao`, `aptos`, `comparecimento`, `abstencoes`,
 `votos_A`, `votos_B`, `votos_validos`, `brancos`, `nulos`, `votos_por_numero`
 (mapa número -> votos), `votos_13` e `votos_17`/`votos_22`, `recebido_texto`,
 `recebido_em_registrado`, `recebido_em`, `emitido_em_registrado`,
@@ -149,8 +149,8 @@ têm horário nulo por construção e não participam da simulação.
 | 2026 | 3.985 | 498.344 | 402 |
 
 Um timestamp de segundo não permite recuperar a ordem dentro dos empates.
-No Prompt 4, processar os grupos empatados juntos ou declarar um desempate
-determinístico e fazer análise de sensibilidade. Não chamar essa sequência de
+No Prompt 4, desempatar de forma determinística por
+`(uf, cod_municipio, zona, secao)`. Não chamar essa sequência de
 ordem exata de divulgação pública: recebimento, processamento e publicação
 são instantes distintos. Os horários de encerramento também têm anomalias
 pontuais; não foram usados para alterar automaticamente timestamps de chegada.
@@ -310,3 +310,99 @@ Fontes, variáveis, unidades, períodos e restrições estão em [FONTES_IBGE.md
 As amostras e URLs IBGE estão em `data/raw/ibge/manifesto.json`. Não houve cálculo de indicadores. Antes de modelar cada eleição, selecionar dados publicados até a data simulada, especialmente no backtest de 2022; indicadores de anos posteriores não podem entrar nas previsões históricas.
 
 <!-- fim:inspecao-download -->
+
+## Regras do pareamento e da simulação
+
+Antes do pareamento, os três Parquets foram regenerados com
+`NR_LOCAL_VOTACAO` dos BUs normalizado como `local_votacao` (inteiro), usando
+`max` após verificar consistência das repetições por seção. Na suplementação
+sem BU, usa-se a coluna homônima do detalhe oficial por seção. Sentinelas
+conhecidas do BU tornam-se nulas e nunca formam um local fictício para junção.
+Os testes de totais independentes continuam exigindo igualdade exata.
+
+Comando: `uv run python -m apuracao.match`, ou `--ano 2026`.
+Saídas: `data/processed/pareado_2022.parquet` e `pareado_2026.parquet`.
+O pareamento usa somente dados do TSE; nenhuma tabela ou chave IBGE é usada.
+Somente `tem_bu=True` entra no alvo e nas estatísticas históricas.
+
+A cascata escolhe o primeiro nível com votos válidos e aptos positivos:
+
+1. `secao`: `(uf, cod_municipio, zona, secao)`.
+2. `local`: `(uf, cod_municipio, zona, local_votacao)`.
+3. `zona`: `(uf, cod_municipio, zona)`.
+4. `municipio`: `(uf, cod_municipio)`.
+5. `uf`: `uf`, incluindo `ZZ` para exterior e códigos municipais ausentes na base.
+
+Em cada grupo, `pct_A_base = sum(votos_A) / sum(votos_A + votos_B)` e
+`comparec_base = sum(comparecimento) / sum(aptos)`, calculados **apenas na base**.
+São frações entre 0 e 1, não percentuais entre 0 e 100. A primeira taxa é
+ponderada pelos votos válidos, e a segunda pelos aptos; não há média simples
+dos percentuais por seção. Grupos sem denominador válido são pulados.
+Se nem a UF tiver base válida, a execução falha sem inventar média nacional.
+Chaves de seção duplicadas são recusadas para impedir multiplicação de linhas.
+
+O resultado preserva as colunas do alvo e acrescenta `pct_A_base`,
+`comparec_base`, `nivel_pareamento`, `pareada` (verdadeira somente no nível
+`secao`), `ano_base`, `secoes_base_no_grupo`, `votos_validos_base_no_grupo` e
+`aptos_base_no_grupo`. Votos do alvo são preservados para avaliação posterior,
+mas não entram no cálculo dessas características históricas.
+
+### Seções agregadas e identidade entre anos
+
+Exemplos reais de `secoes_agregadas`: `0419`, `0084 / 0086` em 2018 e
+`84 / 109` em 2022. O texto é preservado; cada BU representa a seção principal
+com o total da urna. Os membros agregados não viram linhas históricas extras,
+pois isso repetiria votos e aptos.
+
+Se uma seção alvo existia apenas como membro de uma agregação na base, não
+há registro autônomo para o nível `secao`: ela segue para `local`, e depois
+zona/município/UF se necessário. As taxas desses grupos incluem os votos da
+principal uma única vez. Não se divide o BU da principal entre membros nem se
+afirma conhecer os votos individuais de cada agregada. Se a principal existe
+com a mesma chave nos dois anos, vale a regra de seção, mesmo quando a
+composição da agregação mudou. Portanto, igualdade de chave é uma aproximação
+administrativa e não prova que o eleitorado ou a escola permaneceram iguais.
+Um código de local também pode ser alterado, caso em que a cascata segue para
+os níveis mais amplos. Essa limitação deve acompanhar a interpretação do swing.
+
+### Regras confirmadas para o Prompt 4
+
+- Denominador de `% apurado`: número de seções do **ano alvo com `tem_bu=True`**.
+  Não contar as linhas suplementares sem BU e não ponderar esse percentual por aptos.
+- Ordenação: `recebido_em`, depois `(uf, cod_municipio, zona, secao)` para empates.
+  `cod_municipio` é o código TSE de cinco dígitos; zona e seção são inteiros.
+- `ZZ` participa do denominador e da ordenação pelo horário do TSE, sem ajuste
+  para um suposto fuso único do exterior.
+- A ordem dentro de um segundo empatado é convencional e reproduzível.
+  Os snapshots de 1% podem cortar esses grupos; isso não representa uma ordem
+  observada de publicação pública.
+
+O teste exige seção + local **estritamente acima de 90% dos aptos do alvo**.
+O relatório é impresso e salvo antes dessa verificação; se a meta falhar, o
+Parquet daquele pareamento não é publicado e a execução para para revisão.
+As evidências estão em [COBERTURA_PAREAMENTO.json](COBERTURA_PAREAMENTO.json).
+
+<!-- inicio:cobertura-pareamento -->
+## Cobertura do pareamento (Prompt 3)
+
+Denominador: apenas seções com `tem_bu=True` e seus aptos no ano alvo. As proporções históricas usam apenas BUs do ano base.
+
+| Alvo ← base | Nível | Seções | % seções | Aptos | % aptos |
+| --- | --- | ---: | ---: | ---: | ---: |
+| 2022 ← 2018 | secao | 437833 | 92.7557 | 146354651 | 93.5452 |
+| 2022 ← 2018 | local | 28310 | 5.9975 | 8393671 | 5.3650 |
+| 2022 ← 2018 | zona | 4833 | 1.0239 | 1397527 | 0.8933 |
+| 2022 ← 2018 | municipio | 1048 | 0.2220 | 307312 | 0.1964 |
+| 2022 ← 2018 | uf | 4 | 0.0008 | 193 | 0.0001 |
+| 2026 ← 2022 | secao | 461219 | 92.3907 | 148018168 | 93.2427 |
+| 2026 ← 2022 | local | 25177 | 5.0434 | 6943786 | 4.3742 |
+| 2026 ← 2022 | zona | 10600 | 2.1234 | 3029698 | 1.9085 |
+| 2026 ← 2022 | municipio | 2148 | 0.4303 | 714576 | 0.4501 |
+| 2026 ← 2022 | uf | 61 | 0.0122 | 38749 | 0.0244 |
+
+Seção + local em 2022: **98.9102% dos aptos**; meta estrita >90%: aprovada.
+
+
+Seção + local em 2026: **97.6169% dos aptos**; meta estrita >90%: aprovada.
+
+<!-- fim:cobertura-pareamento -->

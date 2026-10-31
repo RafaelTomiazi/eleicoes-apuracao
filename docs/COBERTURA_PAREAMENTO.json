@@ -1,0 +1,94 @@
+[
+  {
+    "ano": 2022,
+    "ano_base": 2018,
+    "secoes_alvo": 472028,
+    "aptos_alvo": 156453354,
+    "niveis": [
+      {
+        "nivel": "secao",
+        "secoes": 437833,
+        "aptos": 146354651,
+        "pct_secoes": 92.75572635521621,
+        "pct_aptos": 93.54523074014763
+      },
+      {
+        "nivel": "local",
+        "secoes": 28310,
+        "aptos": 8393671,
+        "pct_secoes": 5.997525570517003,
+        "pct_aptos": 5.364967119848386
+      },
+      {
+        "nivel": "zona",
+        "secoes": 4833,
+        "aptos": 1397527,
+        "pct_secoes": 1.0238799393256333,
+        "pct_aptos": 0.8932547396842639
+      },
+      {
+        "nivel": "municipio",
+        "secoes": 1048,
+        "aptos": 307312,
+        "pct_secoes": 0.22202072758395688,
+        "pct_aptos": 0.19642404086779758
+      },
+      {
+        "nivel": "uf",
+        "secoes": 4,
+        "aptos": 193,
+        "pct_secoes": 0.0008474073571906751,
+        "pct_aptos": 0.0001233594519168953
+      }
+    ],
+    "cobertura_aptos_secao_local": 0.9891019785999602,
+    "meta_estrita": 0.9,
+    "aprovado": true
+  },
+  {
+    "ano": 2026,
+    "ano_base": 2022,
+    "secoes_alvo": 499205,
+    "aptos_alvo": 158744977,
+    "niveis": [
+      {
+        "nivel": "secao",
+        "secoes": 461219,
+        "aptos": 148018168,
+        "pct_secoes": 92.39070121493174,
+        "pct_aptos": 93.24274115457524
+      },
+      {
+        "nivel": "local",
+        "secoes": 25177,
+        "aptos": 6943786,
+        "pct_secoes": 5.043419036267665,
+        "pct_aptos": 4.374176828284778
+      },
+      {
+        "nivel": "zona",
+        "secoes": 10600,
+        "aptos": 3029698,
+        "pct_secoes": 2.1233761681072907,
+        "pct_aptos": 1.9085315688445375
+      },
+      {
+        "nivel": "municipio",
+        "secoes": 2148,
+        "aptos": 714576,
+        "pct_secoes": 0.43028415180136415,
+        "pct_aptos": 0.4501408570552755
+      },
+      {
+        "nivel": "uf",
+        "secoes": 61,
+        "aptos": 38749,
+        "pct_secoes": 0.012219428891938182,
+        "pct_aptos": 0.024409591240168813
+      }
+    ],
+    "cobertura_aptos_secao_local": 0.9761691798286002,
+    "meta_estrita": 0.9,
+    "aprovado": true
+  }
+]

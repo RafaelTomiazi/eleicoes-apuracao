@@ -21,7 +21,7 @@ def write_fixture(path: Path, year: int, *, conflict: bool = False) -> None:
     for uf in ("AC","ZZ"):
         for number,kind,votes in [(13,"Nominal",30),(CANDIDATES[year]["B"],"Nominal",40),(95,"Branco",2),(96,"Nulo",8)]:
             row = {uf_column:uf,"CD_MUNICIPIO":"1007","NM_MUNICIPIO":"MUNICÍPIO",
-                   "NR_ZONA":"1","NR_SECAO":"2","QT_APTOS":"100","QT_COMPARECIMENTO":"80",
+                   "NR_ZONA":"1","NR_SECAO":"2","NR_LOCAL_VOTACAO":"1001","QT_APTOS":"100","QT_COMPARECIMENTO":"80",
                    "QT_ABSTENCOES":"20","NR_VOTAVEL":str(number),"DS_TIPO_VOTAVEL":kind,
                    "QT_VOTOS":str(votes),"CD_CARGO_PERGUNTA":"1","DS_CARGO_PERGUNTA":"Presidente",
                    "NR_TURNO":"2","ANO_ELEICAO":str(year),"DT_ENCERRAMENTO":timestamp,
@@ -49,6 +49,7 @@ def test_repeated_attributes_votes_and_historical_headers(tmp_path: Path,year: i
         assert connection.execute("SELECT count(*),sum(aptos),sum(comparecimento),sum(votos_A),sum(votos_B),sum(brancos),sum(nulos) FROM sections").fetchone() == (2,200,160,60,80,4,16)
         assert connection.execute("SELECT exterior,secoes_agregadas,cod_municipio,cd_flashcard_urna_efetivada FROM sections WHERE uf='ZZ'").fetchone() == (True,"3,4","01007","ABCD")
         assert connection.execute("SELECT count(*) FROM sections WHERE recebido_em_registrado IS NULL").fetchone()[0] == (2 if year == 2018 else 0)
+        assert connection.execute("SELECT DISTINCT local_votacao FROM sections").fetchall() == [(1001,)]
 
 
 def test_conflicting_repeated_attributes_fail(tmp_path: Path) -> None:

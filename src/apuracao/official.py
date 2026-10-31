@@ -72,6 +72,7 @@ def official_totals(year: int, root: Path = ROOT) -> dict[str, Any]:
                 connection.execute("""CREATE OR REPLACE TEMP TABLE section_detail AS SELECT
                     SG_UF AS uf,lpad(CD_MUNICIPIO,5,'0') AS cod_municipio,NM_MUNICIPIO AS nome_municipio,
                     CAST(NR_ZONA AS INTEGER) AS zona,CAST(NR_SECAO AS INTEGER) AS secao,
+                    try_cast(NR_LOCAL_VOTACAO AS INTEGER) AS local_votacao,
                     CAST(QT_APTOS AS BIGINT) AS aptos,CAST(QT_COMPARECIMENTO AS BIGINT) AS comparecimento,
                     CAST(QT_VOTOS_NOMINAIS AS BIGINT) AS votos_nominais,
                     CAST(QT_VOTOS_BRANCOS AS BIGINT) AS brancos,CAST(QT_VOTOS_NULOS AS BIGINT) AS nulos,

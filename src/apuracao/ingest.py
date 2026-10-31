@@ -63,7 +63,10 @@ def aggregate_csv(connection: duckdb.DuckDBPyConnection, source: Path, year: int
         CREATE OR REPLACE TEMP TABLE normalized AS
         SELECT trim({uf}) AS uf, lpad(trim(CD_MUNICIPIO), 5, '0') AS cod_municipio,
                NM_MUNICIPIO AS nome_municipio, CAST(NR_ZONA AS INTEGER) AS zona,
-               CAST(NR_SECAO AS INTEGER) AS secao, CAST(QT_APTOS AS BIGINT) AS aptos,
+               CAST(NR_SECAO AS INTEGER) AS secao,
+               CASE WHEN NR_LOCAL_VOTACAO IN ('#NULO#','#NULO','#NE','-1','-3','') THEN NULL
+                    ELSE CAST(NR_LOCAL_VOTACAO AS INTEGER) END AS local_votacao,
+               CAST(QT_APTOS AS BIGINT) AS aptos,
                CAST(QT_COMPARECIMENTO AS BIGINT) AS comparecimento,
                CAST(QT_ABSTENCOES AS BIGINT) AS abstencoes,
                CAST(NR_VOTAVEL AS INTEGER) AS numero,
@@ -94,6 +97,7 @@ def aggregate_csv(connection: duckdb.DuckDBPyConnection, source: Path, year: int
           HAVING count(DISTINCT aptos)>1 OR count(DISTINCT comparecimento)>1
              OR count(DISTINCT abstencoes)>1 OR count(DISTINCT recebido_texto)>1
              OR count(DISTINCT secoes_agregadas)>1
+             OR count(DISTINCT coalesce(local_votacao,-1))>1
         )
     """).fetchone()[0]
     if conflicts:
@@ -101,6 +105,7 @@ def aggregate_csv(connection: duckdb.DuckDBPyConnection, source: Path, year: int
     connection.execute(f"""
         CREATE OR REPLACE TEMP TABLE batch AS
         SELECT uf,cod_municipio, max(nome_municipio) AS nome_municipio,zona,secao,
+          max(local_votacao) AS local_votacao,
           max(aptos) AS aptos,max(comparecimento) AS comparecimento,max(abstencoes) AS abstencoes,
           coalesce(sum(votos) FILTER (WHERE tipo='nominal' AND numero={a}),0)::BIGINT AS votos_A,
           coalesce(sum(votos) FILTER (WHERE tipo='nominal' AND numero={b}),0)::BIGINT AS votos_B,
