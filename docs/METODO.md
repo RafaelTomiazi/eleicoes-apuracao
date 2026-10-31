@@ -473,3 +473,136 @@ Resultados nos marcos configurados (passo padrão de 1% das seções com BU), ar
 O maior desvio acima é medido somente nos snapshots solicitados; não é o máximo a cada BU individual. Atingir <1 p.p. uma vez difere de permanecer nesse intervalo nos cortes seguintes. A parcial é descritiva, sem projeção das seções faltantes e sem intervalo de confiança.
 
 <!-- fim:simulacao-parcial -->
+
+## Modelos e prevenção de vazamento temporal
+
+Interface: `M0().prever(snapshot)`, `M1().prever(snapshot)`, `M2().prever(snapshot)`
+e `M3().prever(snapshot)` retornam `Previsao(pct_13, ic_lo, ic_hi)`, em percentual
+do candidato 13 nos votos válidos, entre 0 e 100. O instante representa o corte
+na ordem em que os boletins chegaram ao TSE.
+
+O pareamento passou a incluir `bn_base = sum(comparecimento - votos_A - votos_B)
+/ sum(comparecimento)`, usando exatamente o mesmo nível escolhido para as
+demais taxas históricas. Os dois Parquets pareados foram regenerados; cobertura
+e totais permanecem iguais. As três taxas históricas estão entre 0 e 1.
+
+Antes de prever, M1–M3 selecionam fisicamente das faltantes **somente** `uf`,
+`cod_municipio`, `aptos`, `pct_A_base`, `comparec_base` e `bn_base`. Nenhuma
+outra coluna das faltantes é consultada, nem comparecimento ou brancos/nulos.
+Dois testes por modelo zeram todos os resultados futuros e depois removem
+inteiramente as colunas não permitidas, exigindo a mesma previsão e intervalo.
+M3 é exercitado com árvores nesses testes, além do teste separado do fallback.
+
+Para as apuradas, as taxas observadas são participação do candidato 13 nos
+válidos, comparecimento/aptos e (comparecimento-válidos)/comparecimento.
+O swing é taxa observada menos taxa pareada. Os pesos são, respectivamente,
+válidos, aptos e comparecimento. Se o denominador de uma taxa for zero, aquela
+seção não contribui para estimar seu swing. Cada taxa prevista é limitada a
+[0,1]. Na faltante, válidos previstos = aptos × comparecimento previsto ×
+(1 - brancos/nulos previstos); votos 13 previstos = válidos previstos ×
+participação prevista. O resultado soma esses votos aos votos já recebidos.
+
+- **M0:** parcial ingênua; `ic_lo=ic_hi=pct_13`, sem intervalo inferencial.
+- **M1:** aplica a média nacional ponderada do swing a cada taxa histórica.
+- **M2:** primeiro encolhe o swing médio ponderado da UF para o nacional,
+  depois o municipal para o da UF: `(n * swing_observado + k * swing_pai) / (n+k)`.
+  `n` é o número de seções observadas com denominador positivo para aquela taxa.
+  Sem observações locais, usa o pai; `k=0` permite verificar recuperação exata
+  de swings municipais em dados sintéticos.
+- **M3:** três LightGBMs, um por taxa, treinados somente nas apuradas. Features:
+  taxas históricas, região/UF como categorias, swings municipais/estaduais
+  hierárquicos conhecidos no corte, contagens de seções observadas e indicadores
+  históricos do IBGE. São 200 árvores, learning_rate=0.05, 15 folhas, profundidade
+  máxima 6, mínimo 40 observações por folha, quatro threads, seed=42 e modo
+  determinístico. Abaixo de 2.000 apuradas, o resultado é exatamente o do M2.
+
+### Calibração e indicadores históricos
+
+O padrão inicial de k é 20. A grade pré-definida `{5,20,100}` foi comparada
+somente nos cortes 1%, 10%, 30% e 50% de **2022**, minimizando MAE do M2.
+Foi escolhido **k=5**, congelado para os dois anos em
+[CALIBRACAO_K.json](CALIBRACAO_K.json). Não houve seleção com resultados de 2026.
+Esses quatro cortes de 2022 são dados de calibração; a precisão neles não é
+uma validação independente da escolha de k. Os parâmetros do LightGBM não
+foram ajustados pelos resultados desta aferição.
+
+Foram usadas as edições originais de população municipal 2021 (publicação
+27/08/2021) e PIB per capita 2019 (17/12/2021), nos dois anos alvo. Não se usou
+o Censo 2022 nem a série atual revisada do SIDRA no backtest. Os hashes das
+edições são verificados antes da leitura. ODS é lido por XML; PIB é TXT de
+largura fixa nas posições do layout oficial, documentadas em
+[FONTES_MODELOS.md](FONTES_MODELOS.md). Sem dependências adicionais de Excel.
+
+O de/para oficial encontrado é de 2026 e não entra no backtest. Para anexar
+os indicadores, faz-se correspondência exata de UF + nome municipal após
+remover acentos/espaços/pontuação; nomes ambíguos interrompem o processamento.
+Não há correspondência aproximada nem preenchimento com dados futuros.
+Ficam sem indicador 13 municípios brasileiros em 2022 e 14 em 2026, além
+do exterior. LightGBM recebe valores ausentes nesses casos. A lista completa
+está em [INDICADORES_MODELOS.json](INDICADORES_MODELOS.json). O código IBGE
+vem da planilha histórica e não é tratado como se fosse código TSE.
+Os valores numéricos entram como log1p; a data de publicação é verificada
+contra a data do snapshot, inclusive quando indicadores são passados à API.
+
+### Intervalos bootstrap: implementação e limites
+
+M1–M3 usam 200 reamostragens, seed=42, dos resíduos das **apuradas** após o
+ajuste do respectivo modelo. Os resíduos das três taxas são resumidos por
+município `(uf,cod_municipio)`, com os mesmos pesos das taxas. O vetor de
+erro médio municipal é a unidade de bloco; ele é centralizado na média
+dos blocos. Cada município faltante recebe um bloco sorteado com reposição;
+todas as suas seções recebem a mesma perturbação conjunta das três taxas.
+Isso conserva dependência municipal e entre as três taxas, sem sortear seções
+independentemente. Os limites são os quantis 5% e 95% dos resultados nacionais.
+O LightGBM é ajustado apenas três vezes por snapshot, nunca dentro do bootstrap.
+
+Esta aproximação usa o erro médio do bloco e pressupõe permutabilidade entre
+municípios observados e faltantes. Não estima a incerteza da calibração de k,
+das covariáveis ou do ajuste das árvores; os resíduos do M3 são do próprio
+treino, e as features locais de treino incluem as observações disponíveis no
+corte. Isso pode subestimar incerteza. A cobertura de 90% é **nominal**, não
+uma garantia validada. Aferir a cobertura por progresso/região no Prompt 6.
+Não se deve corrigir os intervalos usando o resultado conhecido de 2026.
+
+Em 100% recebido, não existem faltantes: todos os modelos devolvem exatamente
+o resultado apurado e intervalo degenerado. Os testes conferem esse fechamento
+nos dois anos contra os totais oficiais independentes do BU.
+
+Comandos: `uv run python -m apuracao.features`,
+`uv run python -m apuracao.models --calibrar-k` (somente 2022) e
+`uv run python -m apuracao.models` (aferição de quatro cortes por ano).
+`--ano 2022` repete somente aquele ano. Os tempos incluem 200 reamostragens
+e o treino, mas excluem a importação inicial e a leitura/ordenação do arquivo.
+
+<!-- inicio:modelos-benchmark -->
+## Aferição rápida dos modelos (Prompt 5)
+
+Percentuais do candidato 13 nos votos válidos, na ordem em que os boletins chegaram ao TSE. Somente cortes de 1%, 10%, 30% e 50%; não é a avaliação completa.
+
+| Ano | Corte | Modelo | Previsto (%) | Erro (p.p.) | Intervalo nominal 90% | Inclui o final? | Tempo (s) |
+| --- | ---: | --- | ---: | ---: | --- | --- | ---: |
+| 2022 | 10% | M0 | 47.9884 | -2.9140 | sem IC | — | 0.0001 |
+| 2022 | 10% | M1 | 50.3379 | -0.5645 | [49.4916; 51.1051] | sim | 3.6287 |
+| 2022 | 10% | M2 | 51.2953 | +0.3929 | [50.8985; 51.5886] | sim | 4.2607 |
+| 2022 | 10% | M3 | 51.0140 | +0.1116 | [50.7875; 51.2046] | sim | 11.0971 |
+| 2022 | 30% | M0 | 48.9461 | -1.9563 | sem IC | — | 0.0002 |
+| 2022 | 30% | M1 | 50.2148 | -0.6876 | [49.5557; 50.8149] | não | 3.0052 |
+| 2022 | 30% | M2 | 51.3341 | +0.4317 | [51.1673; 51.4935] | não | 3.6562 |
+| 2022 | 30% | M3 | 51.0971 | +0.1947 | [50.9506; 51.2413] | não | 13.3834 |
+
+| Ano | Corte | M0 (s) | M1 (s) | M2 (s) | M3 (s) |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 2022 | 1% | 0.0000 | 3.9178 | 4.4466 | 9.6756 |
+| 2022 | 10% | 0.0001 | 3.6287 | 4.2607 | 11.0971 |
+| 2022 | 30% | 0.0002 | 3.0052 | 3.6562 | 13.3834 |
+| 2022 | 50% | 0.0003 | 2.3162 | 3.0243 | 15.5424 |
+| 2026 | 1% | 0.0000 | 4.5267 | 5.2567 | 12.4809 |
+| 2026 | 10% | 0.0001 | 7.4127 | 5.0529 | 12.4967 |
+| 2026 | 30% | 0.0002 | 3.2761 | 3.9122 | 14.0098 |
+| 2026 | 50% | 0.0003 | 2.3308 | 3.1697 | 15.4570 |
+
+Tempos pontuais desta máquina, não um teste de latência isolado. Excluem importação e leitura/ordenação dos Parquets; incluem preparação de características, treino e 200 reamostragens para M1–M3. M0 não faz bootstrap.
+
+A meta pontual <1 p.p. a 30% foi atingida nesta aferição de 2022 por M1–M3. Os mesmos cortes de 2022 participaram da seleção de k; logo não são teste independente da calibração. Os intervalos de M1, M2 e M3 em 30% de 2022 não contiveram o final. A cobertura nominal de 90% não está demonstrada; avaliar a cobertura no Prompt 6, sem ajustar intervalos para encaixar o resultado de 2026.
+
+<!-- fim:modelos-benchmark -->

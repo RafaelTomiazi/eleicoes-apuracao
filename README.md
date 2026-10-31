@@ -40,8 +40,8 @@ por candidato, válidos, brancos, nulos, comparecimento e eleitorado apto.
 
 As seções sem BU vieram do detalhe oficial, possuem comparecimento e votos
 zero e estão marcadas com `tem_bu=False` e `apta_simulacao=False`.
-Os resultados de projeção ainda não foram produzidos. A simulação da parcial,
-sem estimar votos faltantes, gerou estes resultados nos cortes de 1%:
+A simulação da parcial, na ordem em que os boletins chegaram ao TSE e sem
+estimar votos faltantes, gerou estes resultados nos cortes de 1%:
 
 | Ano | Primeiro corte com erro <1 p.p. | Abaixo de 1 p.p. até o fim | Maior desvio absoluto nos cortes |
 | --- | ---: | ---: | ---: |
@@ -51,6 +51,18 @@ sem estimar votos faltantes, gerou estes resultados nos cortes de 1%:
 Os percentuais estão arredondados. Um erro pequeno no começo não garante que
 a parcial permanecerá perto do resultado final. Gráficos: [2022](reports/figures/parcial_2022.png)
 e [2026](reports/figures/parcial_2026.png).
+
+Na aferição inicial dos modelos, com 30% das seções de 2022 recebidas, os erros
+absolutos foram 1,956 p.p. (M0), 0,688 (M1), 0,432 (M2) e **0,195 (M3)**.
+O resultado final do candidato 13 foi 50,9024%; M3 estimou 51,0971%.
+Esse corte participou da calibração de k em 2022. A avaliação completa ainda
+será feita. O intervalo nominal de 90% do M3, [50,9506%; 51,2413%], não incluiu
+o resultado final nesse corte: a cobertura dos intervalos precisa ser avaliada.
+
+Os testes zeram e removem os resultados das seções faltantes para garantir
+que os modelos usem apenas informações disponíveis no snapshot. Fontes e
+limites estão em [METODO.md](docs/METODO.md); os tempos e os quatro cortes
+por ano estão em [BENCHMARK_MODELOS.json](docs/BENCHMARK_MODELOS.json).
 
 O pareamento por seção ou local de votação cobre **98,9102% dos aptos de 2022**
 (base 2018) e **97,6169% dos aptos de 2026** (base 2022). Os demais usam zona,
@@ -69,6 +81,9 @@ uv run python -m apuracao.download --ano 2018
 uv run python -m apuracao.ingest
 uv run python -m apuracao.match
 uv run python -m apuracao.simulate
+uv run python -m apuracao.features
+uv run python -m apuracao.models --calibrar-k
+uv run python -m apuracao.models
 uv run pytest
 ```
 

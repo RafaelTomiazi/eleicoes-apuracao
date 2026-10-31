@@ -39,6 +39,7 @@ def build_cascade(connection: duckdb.DuckDBPyConnection) -> None:
             CREATE OR REPLACE TEMP TABLE historico_{level} AS SELECT {grouping},
                 sum(votos_A)::DOUBLE / nullif(sum(votos_A+votos_B),0) AS pct_A_base,
                 sum(comparecimento)::DOUBLE / nullif(sum(aptos),0) AS comparec_base,
+                sum(comparecimento-votos_A-votos_B)::DOUBLE / nullif(sum(comparecimento),0) AS bn_base,
                 count(*) AS secoes_base_no_grupo,
                 sum(votos_A+votos_B)::BIGINT AS votos_validos_base_no_grupo,
                 sum(aptos)::BIGINT AS aptos_base_no_grupo
@@ -52,7 +53,7 @@ def build_cascade(connection: duckdb.DuckDBPyConnection) -> None:
     choice = "CASE " + " ".join(f"WHEN h{i}.pct_A_base IS NOT NULL THEN '{level}'" for i,level in enumerate(LEVELS)) + " END"
     values = ",".join(
         f"coalesce({','.join(f'h{i}.{column}' for i in range(len(LEVELS)))}) AS {column}"
-        for column in ("pct_A_base","comparec_base","secoes_base_no_grupo","votos_validos_base_no_grupo","aptos_base_no_grupo")
+        for column in ("pct_A_base","comparec_base","bn_base","secoes_base_no_grupo","votos_validos_base_no_grupo","aptos_base_no_grupo")
     )
     connection.execute(f"""
         CREATE OR REPLACE TEMP TABLE pareado AS
@@ -64,6 +65,7 @@ def build_cascade(connection: duckdb.DuckDBPyConnection) -> None:
         SELECT count(*) FROM pareado WHERE nivel_pareamento IS NULL
           OR pct_A_base IS NULL OR pct_A_base NOT BETWEEN 0 AND 1
           OR comparec_base IS NULL OR comparec_base NOT BETWEEN 0 AND 1
+          OR bn_base IS NULL OR bn_base NOT BETWEEN 0 AND 1
     """).fetchone()[0]
     if invalid:
         raise ValueError(f"{invalid} seções sem base válida até o nível UF")
