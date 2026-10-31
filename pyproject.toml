@@ -1,0 +1,31 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "eleicoes-apuracao"
+version = "0.1.0"
+description = "Reprodução da apuração presidencial urna por urna e projeção do resultado final."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "duckdb",
+    "polars",
+    "pyarrow",
+    "pandas",
+    "requests",
+    "scikit-learn",
+    "lightgbm",
+    "matplotlib",
+    "plotly",
+    "geobr",
+    "streamlit",
+    "pytest",
+    "jupyter",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/apuracao"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
