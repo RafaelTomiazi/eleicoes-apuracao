@@ -406,3 +406,70 @@ Seção + local em 2022: **98.9102% dos aptos**; meta estrita >90%: aprovada.
 Seção + local em 2026: **97.6169% dos aptos**; meta estrita >90%: aprovada.
 
 <!-- fim:cobertura-pareamento -->
+
+## Implementação dos snapshots
+
+Comando: `uv run python -m apuracao.simulate` (2022 e 2026) ou
+`uv run python -m apuracao.simulate --ano 2026 --passo 0.01`.
+Entrada: `data/processed/pareado_{ano}.parquet`.
+Saídas: `data/processed/parcial_{ano}.parquet` e
+`reports/figures/parcial_{ano}.png`. Os resumos ficam também em
+[SIMULACAO_PARCIAL.json](SIMULACAO_PARCIAL.json).
+
+`snapshots(ano, passo=0.01)` fornece objetos `Snapshot` com `pct_apurado`,
+`horario_corte`, `apuradas` e `faltantes` (DataFrames Polars). A tabela é lida,
+filtrada por `tem_bu=True` e ordenada uma única vez por
+`(recebido_em, uf, cod_municipio, zona, secao)`, preservando `ZZ`.
+Uma coluna `ordem_apuracao`, de 1 a N, identifica cada posição. Os cortes usam
+slices contíguos que compartilham os buffers das colunas; um teste verifica
+esse compartilhamento em coluna numérica. A API não relê nem copia a tabela
+inteira a cada snapshot. Os DataFrames conservam as colunas do pareamento;
+modelos posteriores deverão usar votos apenas das seções já apuradas.
+
+Cada marco gera `ceil(marco * N)` seções recebidas, com aritmética decimal
+para não introduzir uma seção extra por erro de ponto flutuante. Inclui-se
+100% mesmo se o passo não dividir 1; marcos que produziriam o mesmo número de
+seções são omitidos. Para estes dois universos, o passo padrão produz 100
+snapshots, do marco de 1% até 100%. Não há snapshot de 0%.
+
+`pct_apurado` guarda a fração efetiva `n_apuradas / N` entre 0 e 1;
+o arredondamento inteiro faz o corte ficar ligeiramente acima do marco.
+`n_apuradas` e `n_faltantes` permitem reconstruí-lo exatamente. `horario_corte`
+é o horário do último BU incluído, exibido em Brasília; pode haver BUs com o
+mesmo segundo entre as faltantes, por causa do desempate determinístico.
+BU sem horário válido ou fuso explícito interrompe a simulação; não existe
+ordem sintética de reserva para 2022/2026.
+
+As parciais são calculadas com somas acumuladas de votos, sem reprocessar todas
+as seções em cada corte. `pct_13_parcial` é `100 * votos_13 / votos_validos`
+acumulados; `pct_13_final` é a mesma razão para todo o universo e é conferida
+com os totais oficiais independentes em `config.py` antes da publicação.
+Ambas estão entre 0 e 100. `diferenca_pp` = parcial - final; não é erro absoluto.
+Se um corte não tiver votos válidos, sua parcial e diferença são nulas.
+
+`pct_apurado_N`, `pct_apurado_NE`, `pct_apurado_CO`, `pct_apurado_SE`,
+`pct_apurado_S` e `pct_apurado_exterior` guardam frações entre 0 e 1:
+seções recebidas **daquela região** / total de seções com BU **daquela região**.
+Não representam a participação da região na parcial nacional. Se não houver
+seções de uma região, a taxa é nula, não zero. As regiões derivam somente das
+UFs; nenhuma fonte IBGE é usada nesta etapa.
+
+Os testes conferem inclusão monotônica de seções, ausência de sobreposição
+entre apuradas e faltantes, conservação do universo, reprodução da ordem em
+entrada embaralhada, ordenação numérica das seções empatadas, cobertura regional
+e igualdade da parcial com o resultado oficial em 100%. Os gráficos usam azul
+neutro para a parcial do candidato 13 e cinza para o resultado final.
+
+<!-- inicio:simulacao-parcial -->
+## Parciais observadas na simulação (Prompt 4)
+
+Resultados nos marcos configurados (passo padrão de 1% das seções com BU), arredondados para cima. Os percentuais abaixo são as frações efetivamente recebidas, e não frações de votos.
+
+| Ano | Seções com BU | Primeiro corte com erro <1 p.p. | Abaixo de 1 p.p. até o final | Maior desvio absoluto | Corte do maior desvio |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 2022 | 472028 | 62.0001% | 62.0001% | 7.3368 p.p. | 1.0002% |
+| 2026 | 499205 | 1.0002% | 66.0001% | 2.3009 p.p. | 25.0002% |
+
+O maior desvio acima é medido somente nos snapshots solicitados; não é o máximo a cada BU individual. Atingir <1 p.p. uma vez difere de permanecer nesse intervalo nos cortes seguintes. A parcial é descritiva, sem projeção das seções faltantes e sem intervalo de confiança.
+
+<!-- fim:simulacao-parcial -->

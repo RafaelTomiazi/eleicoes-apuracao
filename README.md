@@ -40,7 +40,17 @@ por candidato, válidos, brancos, nulos, comparecimento e eleitorado apto.
 
 As seções sem BU vieram do detalhe oficial, possuem comparecimento e votos
 zero e estão marcadas com `tem_bu=False` e `apta_simulacao=False`.
-Os resultados de previsão ainda não foram produzidos.
+Os resultados de projeção ainda não foram produzidos. A simulação da parcial,
+sem estimar votos faltantes, gerou estes resultados nos cortes de 1%:
+
+| Ano | Primeiro corte com erro <1 p.p. | Abaixo de 1 p.p. até o fim | Maior desvio absoluto nos cortes |
+| --- | ---: | ---: | ---: |
+| 2022 | 62% | 62% | 7,3368 p.p. (em 1%) |
+| 2026 | 1% | 66% | 2,3009 p.p. (em 25%) |
+
+Os percentuais estão arredondados. Um erro pequeno no começo não garante que
+a parcial permanecerá perto do resultado final. Gráficos: [2022](reports/figures/parcial_2022.png)
+e [2026](reports/figures/parcial_2026.png).
 
 O pareamento por seção ou local de votação cobre **98,9102% dos aptos de 2022**
 (base 2018) e **97,6169% dos aptos de 2026** (base 2022). Os demais usam zona,
@@ -58,6 +68,7 @@ uv run python -m apuracao.download --ano 2022
 uv run python -m apuracao.download --ano 2018
 uv run python -m apuracao.ingest
 uv run python -m apuracao.match
+uv run python -m apuracao.simulate
 uv run pytest
 ```
 

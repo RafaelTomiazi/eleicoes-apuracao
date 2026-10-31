@@ -1,0 +1,26 @@
+[
+  {
+    "ano": 2022,
+    "snapshots": 100,
+    "secoes_com_bu": 472028,
+    "primeiro_abaixo_1pp": 0.6200013558517715,
+    "abaixo_1pp_ate_final": 0.6200013558517715,
+    "maior_desvio_absoluto_pp": 7.336770215380575,
+    "desvio_com_sinal_pp": -7.336770215380575,
+    "pct_apurado_maior_desvio": 0.010001525333242943,
+    "pct_13_final": 50.90240511717216,
+    "passo": 0.01
+  },
+  {
+    "ano": 2026,
+    "snapshots": 100,
+    "secoes_com_bu": 499205,
+    "primeiro_abaixo_1pp": 0.01000190302581104,
+    "abaixo_1pp_ate_final": 0.6600014022295451,
+    "maior_desvio_absoluto_pp": 2.300869690043143,
+    "desvio_com_sinal_pp": -2.300869690043143,
+    "pct_apurado_maior_desvio": 0.2500015023887982,
+    "pct_13_final": 51.7851828842626,
+    "passo": 0.01
+  }
+]
