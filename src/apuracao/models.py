@@ -66,7 +66,8 @@ class Modelo:
     """Projeta faltantes usando somente chaves, aptos e taxas do ano base."""
 
     def __init__(self, *, k: float | None = None, n_bootstrap: int = 200, seed: int = 42,
-                 indicadores: pl.DataFrame | None = None, min_train: int = 2000) -> None:
+                 indicadores: pl.DataFrame | None = None, min_train: int = 2000,
+                 calibrar_ic: bool = True, n_jobs: int = 4) -> None:
         """Configura parâmetros fixos e, opcionalmente, indicadores históricos."""
         if k is None:
             calibration = ROOT / "docs" / "CALIBRACAO_K.json"
@@ -75,6 +76,7 @@ class Modelo:
             raise ValueError("Parâmetros negativos ou limiar de treino inválido")
         self.k,self.n_bootstrap,self.seed = k,n_bootstrap,seed
         self.indicadores,self.min_train = indicadores,min_train
+        self.calibrar_ic,self.n_jobs = calibrar_ic,n_jobs
 
     def _hierarchy(self, obs: pl.DataFrame, residual: np.ndarray, weights: np.ndarray,
                    frames: list[pl.DataFrame]) -> tuple[list[np.ndarray], list[np.ndarray]]:
@@ -140,18 +142,48 @@ class Modelo:
         blocks = grouped_swings(obs,errors,weights,["uf","cod_municipio"])
         block_errors = np.array([value[0] for _,value in sorted(blocks.items())])
         block_errors -= block_errors.mean(axis=0)
+        # Dispersão estrutural dos swings observados, não apenas resíduos do ajuste.
+        uf_groups = grouped_swings(obs,residual,weights,["uf"])
+        uf_swings = np.array([value[0] for _,value in sorted(uf_groups.items())])
+        uf_counts = np.array([value[1] for _,value in sorted(uf_groups.items())])
+        national_weights = weights.sum(axis=0)
+        national_swing = np.divide((residual*weights).sum(axis=0),national_weights,
+                                   out=np.zeros(3),where=national_weights>0)
+        uf_deviations = uf_swings-national_swing
+        # Erro da média nacional: UF, e não seção, é a unidade independente.
+        denom = uf_counts.sum(axis=0)
+        effective_ufs = np.divide(denom**2,(uf_counts**2).sum(axis=0),
+                                  out=np.ones(3),where=(uf_counts**2).sum(axis=0)>0)
+        national_se = uf_deviations.std(axis=0,ddof=1) / np.sqrt(effective_ufs) if len(uf_swings)>1 else block_errors.std(axis=0)/np.sqrt(max(len(blocks),1))
         # Uma perturbação conjunta por município faltante, preservando o bloco.
         future_keys = list(missing.select("uf","cod_municipio").iter_rows())
         key_index = {key:i for i,key in enumerate(sorted(set(future_keys)))}
         codes = np.array([key_index[key] for key in future_keys])
+        future_ufs = sorted(set(missing["uf"].to_list()))
+        uf_index = {uf:i for i,uf in enumerate(future_ufs)}
+        municipality_uf_codes = np.array([uf_index[key[0]] for key in sorted(key_index)])
         rng = np.random.default_rng(self.seed)
         draws = np.empty(self.n_bootstrap)
         for draw in range(self.n_bootstrap):
             selected = rng.integers(0,len(block_errors),size=len(key_index))
-            adjusted = np.clip(future_rates+block_errors[selected][codes],0,1)
+            # O mesmo choque atinge todas as seções da UF e o choque nacional
+            # atinge todas as faltantes: não desaparecem na média dos municípios.
+            state_shocks = uf_deviations[rng.integers(0,len(uf_deviations),size=len(future_ufs))]
+            common = rng.normal(size=3)*national_se
+            municipal_shocks = block_errors[selected]+state_shocks[municipality_uf_codes]+common
+            adjusted = np.clip(future_rates+municipal_shocks[codes],0,1)
             draws[draw] = project(adjusted)
         lo,hi = np.quantile(draws,[0.05,0.95])
-        return Previsao(pct,float(lo),float(hi))
+        # Uma envoltória bilateral conserva o desvio comum também quando o
+        # conjunto de UFs observado desloca quase todos os draws para um lado.
+        radius = max(abs(float(lo)-pct),abs(float(hi)-pct))
+        result = Previsao(float(pct),float(max(0,pct-radius)),float(min(100,pct+radius)))
+        calibration = ROOT / "docs" / "CALIBRACAO_IC.json"
+        if self.calibrar_ic and calibration.exists():
+            from apuracao.evaluate import apply_ic_calibration
+
+            return apply_ic_calibration(result,type(self).__name__,snapshot.pct_apurado,read_json(calibration))
+        return result
 
 
 class M0(Modelo):
@@ -274,7 +306,7 @@ class M3(Modelo):
         for j in range(3):
             valid = weights[:,j]>0
             model = LGBMRegressor(n_estimators=200,learning_rate=0.05,num_leaves=15,
-                              max_depth=6,min_child_samples=40,n_jobs=4,random_state=self.seed,
+                              max_depth=6,min_child_samples=40,n_jobs=self.n_jobs,random_state=self.seed,
                               deterministic=True,force_col_wise=True,verbosity=-1)
             model.fit(train[valid],residual[valid,j],sample_weight=weights[valid,j],categorical_feature=[3,4])
             swings[0][:,j] = model.predict(train)
