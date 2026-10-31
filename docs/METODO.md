@@ -1,5 +1,32 @@
 # Método
 
+## Prompt 2: confirmação dos candidatos (etapa parcial)
+
+Leitura integral dos 84 CSVs de BU usando DuckDB, um arquivo por vez, após
+descompactação temporária. A extensão oficial `encodings` é instalada em cache
+na primeira execução para ler `latin-1`. Os arquivos temporários são apagados.
+O filtro exige `CD_CARGO_PERGUNTA = 1`, `DS_CARGO_PERGUNTA = Presidente`,
+`NR_TURNO = 2` e `DS_TIPO_VOTAVEL = Nominal` (descrições sem distinção de caixa).
+A consulta lista valores distintos, sem somar aptos, comparecimento ou votos.
+Todos os arquivos de cada ano, inclusive `ZZ`, foram consultados.
+
+| Ano | NR_VOTAVEL | NM_VOTAVEL | SG_PARTIDO |
+| --- | --- | --- | --- |
+| 2018 | 13 | FERNANDO HADDAD | PT |
+| 2018 | 17 | JAIR BOLSONARO | PSL |
+| 2022 | 13 | LULA | PT |
+| 2022 | 22 | JAIR BOLSONARO | PL |
+| 2026 | 13 | LULA | PT |
+| 2026 | 22 | FLAVIO BOLSONARO | PL |
+
+Comando: `uv run python -m apuracao.ingest --listar-candidatos`.
+O mapeamento A/B aguarda confirmação do usuário e não foi criado.
+Esta etapa ainda não gera `secoes_{ano}.parquet`. Permanecem pendentes a
+agregação por seção, a investigação de fuso horário, o relatório de nulos e
+empates, as seções agregadas e a comparação de totais com fonte independente.
+A existência de horário de recebimento ainda não resolve a comparação entre
+fusos nem estabelece o instante de totalização pública.
+
 <!-- inicio:inspecao-download -->
 ## Inspeção dos boletins de urna (Prompt 1)
 
