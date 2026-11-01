@@ -1,0 +1,71 @@
+{
+  "faixa": "Estrutural bruta, sem cobertura validada; escolha feita APÓS ver 2026.",
+  "marcos_m3": {
+    "2022": {
+      "primeira_exclusao": 83,
+      "exclusao_continua": 85
+    },
+    "2026": {
+      "primeira_exclusao": 8,
+      "exclusao_continua": 8
+    }
+  },
+  "criterio": "Exclusão estrita: limite inferior > 50 ou superior < 50. Exclusão contínua até o último corte (99%).",
+  "observacao": "Em 2022 exclui em 83%, volta a tocar em 84% e exclui continuamente desde 85%.",
+  "validacao_2026": [
+    [
+      "Votos 13",
+      "64.256.232",
+      "64.256.232",
+      "0"
+    ],
+    [
+      "Votos 22",
+      "59.826.041",
+      "59.826.041",
+      "0"
+    ],
+    [
+      "Válidos",
+      "124.082.273",
+      "124.082.273",
+      "0"
+    ],
+    [
+      "Brancos",
+      "1.430.496",
+      "1.430.496",
+      "0"
+    ],
+    [
+      "Nulos",
+      "2.723.305",
+      "2.723.305",
+      "0"
+    ],
+    [
+      "Aptos",
+      "158.745.502",
+      "158.745.502",
+      "0"
+    ]
+  ],
+  "arquivos_protegidos_sha256": {
+    "reports\\figures\\erro_modelos.png": "92a4ba830cd336b127204336c989e118eb90c955475c52b572c1cd25fe50b772",
+    "reports\\figures\\parcial_2022.png": "a09785d9c7baf4b9a2a2be1a2fc8592617b28d726bb2076f761777a7abf2c75d",
+    "reports\\figures\\parcial_2026.png": "fc1e82bf92b4faa81a8e8218b6f2597629e3bcab3db0ec1317f3c24ead4a6123",
+    "reports\\figures\\projecao_2022.png": "cafc410b0498b66f2b146834ff3c5af2e568ffe4e8a524fb4e0879f899ad1a90",
+    "reports\\figures\\projecao_2026.png": "33f10cb82e03c1d65d321e5d6b29b5d00cfe4ef739b45250cab876c9e9b104c7",
+    "reports\\figures\\swing_municipios_2022_2026.png": "6c6c2efbdbd3d17a6d93a3bd83fcfb160d7a3d46113242bd27b7cc16d841a0c7",
+    "data\\processed\\avaliacao.parquet": "de9a12606308f144e16db81ade7e0d6e9ec7e2b6a505020228fa98b59bfaf57e",
+    "docs\\CALIBRACAO_IC.json": "8528984cd988925435ee61ee95f07b7c45621ceace17d541b57db9bd3036b287",
+    "docs\\CALIBRACAO_K.json": "fcbc34c6b16188bf9892c2964067a6fd73c6dfbadb241de055ccd14322f8eb66"
+  },
+  "figuras": [
+    "reports\\figures\\linkedin\\projecao_2026_li.png",
+    "reports\\figures\\linkedin\\projecao_2022_li.png",
+    "reports\\figures\\linkedin\\parcial_2022_li.png",
+    "reports\\figures\\linkedin\\validacao_li.png",
+    "reports\\figures\\linkedin\\erro_li.png"
+  ]
+}

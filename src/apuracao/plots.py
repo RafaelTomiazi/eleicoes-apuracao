@@ -48,7 +48,8 @@ def wrong_leader_spans(partial: pl.DataFrame) -> list[tuple[float,float]]:
     return spans
 
 
-def principal(year: int, root: Path = ROOT) -> Path:
+def principal(year: int, root: Path = ROOT, *, linkedin: bool = False,
+              exclusion_marco: int | None = None) -> Path:
     """Cria a figura principal de 1080×1350 sem mudar nenhum intervalo avaliado."""
     data = pl.read_parquet(root / "data" / "processed" / "avaliacao.parquet").filter(pl.col("ano")==year)
     naive = data.filter(pl.col("modelo")=="M0").sort("marco")
@@ -62,8 +63,12 @@ def principal(year: int, root: Path = ROOT) -> Path:
     with plt.rc_context({"font.family":"DejaVu Sans","font.size":11,"axes.spines.top":False,"axes.spines.right":False}):
         fig = plt.figure(figsize=(7.2,9),dpi=150,facecolor="#FAFBFD")
         fig.text(0.10,0.952,f"{year}  /  "+("TESTE FORA DA AMOSTRA" if year==2026 else "DESENVOLVIMENTO / CALIBRAÇÃO"),fontsize=10.2,color=GRAY,weight="bold")
-        fig.text(0.10,0.91,"O modelo apontou o vencedor",fontsize=20,weight="bold",color="#243547")
-        fig.text(0.10,0.871,f"desde {stability_model['marco_estavel']}% das seções recebidas",fontsize=20,weight="bold",color="#243547")
+        if linkedin and year == 2022:
+            fig.text(0.10,0.91,"2022: eleição apertada,",fontsize=20,weight="bold",color="#243547")
+            fig.text(0.10,0.871,"incerteza maior",fontsize=20,weight="bold",color="#243547")
+        else:
+            fig.text(0.10,0.91,"O modelo apontou o vencedor",fontsize=20,weight="bold",color="#243547")
+            fig.text(0.10,0.871,f"desde {stability_model['marco_estavel']}% das seções recebidas",fontsize=20,weight="bold",color="#243547")
         fig.text(0.10,0.83,"Na ordem em que os boletins chegaram ao TSE",fontsize=11,color=GRAY)
         fig.text(0.10,0.773,f"Modelo: vencedor certo desde {stability_model['marco_estavel']}%",fontsize=12,weight="bold",color=BLUE)
         fig.text(0.10,0.745,f"Parcial: desde {stability_naive['marco_estavel']}%",fontsize=12,color=GRAY)
@@ -75,6 +80,12 @@ def principal(year: int, root: Path = ROOT) -> Path:
         line3, = ax.plot(x,model["previsto"].to_numpy(),color=BLUE,lw=2.1,label="M3 · projeção",zorder=4)
         final_line = ax.axhline(final,color="#36424D",ls="--",lw=1.2,label=f"Final · {display_pct(final)}%",zorder=2)
         ax.axhline(50,color="#A2A9B0",ls=":",lw=1)
+        if linkedin and exclusion_marco is not None:
+            ax.axvline(exclusion_marco,color=BLUE,ls=":",lw=1,alpha=.65,zorder=2)
+            ax.text(exclusion_marco+(2 if exclusion_marco<50 else -2),.96,
+                    f"{exclusion_marco}%: faixa exclui 50%",transform=ax.get_xaxis_transform(),
+                    ha="left" if exclusion_marco<50 else "right",va="top",fontsize=8.5,color=BLUE,
+                    bbox={"facecolor":"white","edgecolor":"none","alpha":.85,"pad":3})
         ax.set(xlim=(0,100),xlabel="Seções com BU recebidas (%)",ylabel="Candidato 13 nos válidos (%)")
         ax.set_xticks([0,20,40,60,80,100])
         ax.tick_params(labelsize=10)
@@ -83,12 +94,17 @@ def principal(year: int, root: Path = ROOT) -> Path:
                   loc="upper left",bbox_to_anchor=(-0.015,-.14),ncol=2,fontsize=9.4,frameon=False,
                   columnspacing=1.4,handlelength=2)
         fig.text(0.10,0.183,"Sombra cinza: a parcial indicava outro líder.",fontsize=9.5,color=GRAY)
-        fig.text(0.10,0.147,"Faixa conservadora,",fontsize=11.3,weight="bold",color="#384A5C")
-        fig.text(0.10,0.123,"sem cobertura nominal validada.",fontsize=11.3,weight="bold",color="#384A5C")
-        fig.text(0.10,0.086,"Escolha de exibição feita APÓS ver 2026.",fontsize=10.3,weight="bold",color=GRAY)
-        fig.text(0.10,0.050,"Estabilidade retrospectiva nos cortes de 1% a 99%.",fontsize=9.1,color=GRAY)
-        fig.text(0.10,0.029,"Não implica certeza estatística. Fonte: TSE.",fontsize=9.1,color=GRAY)
-        path = root / "reports" / "figures" / f"projecao_{year}.png"
+        if linkedin:
+            fig.text(.5,.075,"Faixa conservadora, sem cobertura validada. Detalhes no repositório. Fonte: TSE.",
+                     ha="center",fontsize=8.3,color=GRAY)
+            path = root / "reports" / "figures" / "linkedin" / f"projecao_{year}_li.png"
+        else:
+            fig.text(0.10,0.147,"Faixa conservadora,",fontsize=11.3,weight="bold",color="#384A5C")
+            fig.text(0.10,0.123,"sem cobertura nominal validada.",fontsize=11.3,weight="bold",color="#384A5C")
+            fig.text(0.10,0.086,"Escolha de exibição feita APÓS ver 2026.",fontsize=10.3,weight="bold",color=GRAY)
+            fig.text(0.10,0.050,"Estabilidade retrospectiva nos cortes de 1% a 99%.",fontsize=9.1,color=GRAY)
+            fig.text(0.10,0.029,"Não implica certeza estatística. Fonte: TSE.",fontsize=9.1,color=GRAY)
+            path = root / "reports" / "figures" / f"projecao_{year}.png"
         path.parent.mkdir(parents=True,exist_ok=True)
         fig.savefig(path,dpi=150,facecolor=fig.get_facecolor())
         plt.close(fig)

@@ -753,3 +753,32 @@ Seus blocos de código apenas importam e chamam funções; toda a lógica está
 em `src/apuracao/`. Figuras, rótulos e dimensões foram revisados visualmente.
 [FIGURAS_AUDITORIA.json](FIGURAS_AUDITORIA.json) registra a decisão posterior
 e os hashes dos três arquivos protegidos antes/depois da geração.
+
+
+## Prompt 7b — imagens para o carrossel
+
+Comando: `uv run python -m apuracao.linkedin`. Exporta cinco PNGs de 1080×1350 em
+`reports/figures/linkedin/`, com paleta neutra. As figuras do README, a avaliação e
+as calibrações são protegidas por SHA-256 antes/depois. Auditoria e valores da tabela:
+[LINKEDIN_FIGURAS.json](LINKEDIN_FIGURAS.json).
+
+As projeções usam `ic_lo_bruto` e `ic_hi_bruto`, a faixa estrutural conservadora
+sem cobertura nominal validada. A decisão de exibi-la continua sendo posterior
+à observação de 2026; nenhum fator ou previsão foi reajustado. O rodapé das versões
+para carrossel foi abreviado conforme solicitado; os detalhes permanecem neste
+método e em RESULTADOS.md.
+
+A faixa exclui o empate somente se o limite inferior for estritamente maior que
+50%, ou o superior estritamente menor que 50%. Nos cortes avaliados de 1% a 99%:
+
+- **2026:** primeira exclusão em **8%**, contínua até 99%.
+- **2022:** primeira exclusão em **83%**; em **84%** volta a incluir 50%; exclusão
+  contínua desde **85%**. A marcação vertical usa 85%, não a primeira exclusão
+  temporária. São marcos nos cortes de 1%, não instantes contínuos estimados.
+
+A sombra da parcial de 2022 cobre explicitamente 1%–67%. A tabela compara somas
+calculadas diretamente de `secoes_2026.parquet` com `data/raw/oficial/2026/totais.json`,
+fonte oficial independente do BU (votação por candidato/município/zona e detalhe
+da apuração). A geração falha se qualquer um dos seis totais divergir. Aptos incluem
+as seções sem BU e o exterior é mantido nos totais nacionais. As barras usam os erros
+absolutos originais de M0 e M3 nos cortes de 10%, 30% e 50% de 2026.

@@ -6,6 +6,21 @@ from PIL import Image
 
 from apuracao.download import ROOT,read_json
 from apuracao.plots import wrong_leader_spans
+from apuracao.linkedin import exclusion_milestones
+
+
+def test_exclusion_distinguishes_first_crossing_from_permanent_crossing() -> None:
+    """Não confunde uma exclusão temporária nem um limite igual a 50 com exclusão contínua."""
+    frame = pl.DataFrame({"marco": [82, 83, 84, 85, 86],
+                          "ic_lo_bruto": [49.8, 50.001, 50., 50.1, 50.2],
+                          "ic_hi_bruto": [52.] * 5})
+    assert exclusion_milestones(frame) == {"primeira_exclusao": 83, "exclusao_continua": 85}
+
+
+def test_band_touching_fifty_never_excludes_a_tie() -> None:
+    """Considera 50% dentro da faixa inclusive quando coincide com um limite."""
+    frame = pl.DataFrame({"marco": [1, 2], "ic_lo_bruto": [49., 50.], "ic_hi_bruto": [50., 51.]})
+    assert exclusion_milestones(frame) == {"primeira_exclusao": None, "exclusao_continua": None}
 
 
 def test_tie_is_not_labeled_as_the_wrong_leader() -> None:
