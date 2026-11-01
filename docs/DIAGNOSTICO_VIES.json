@@ -1,0 +1,112 @@
+{
+  "metodo": "Shapley exato de quatro substituições oraculares; só diagnóstico, sem ajuste.",
+  "componentes_domesticos": [
+    "comparecimento",
+    "brancos_nulos",
+    "swing"
+  ],
+  "exterior": "Todas as taxas de ZZ corrigidas em bloco, sem dupla contagem.",
+  "media_nos_99_cortes": [
+    {
+      "ano": 2022,
+      "modelo": "M2",
+      "erro_medio_pp": 0.30116942810027963,
+      "mediana_pp": 0.33239282252500146,
+      "fracao_cortes_erro_positivo": 1.0
+    },
+    {
+      "ano": 2022,
+      "modelo": "M3",
+      "erro_medio_pp": 0.1138340676663521,
+      "mediana_pp": 0.12149799949417428,
+      "fracao_cortes_erro_positivo": 0.9393939393939394
+    },
+    {
+      "ano": 2026,
+      "modelo": "M2",
+      "erro_medio_pp": 0.17377496265097772,
+      "mediana_pp": 0.17086538573830268,
+      "fracao_cortes_erro_positivo": 0.9696969696969697
+    },
+    {
+      "ano": 2026,
+      "modelo": "M3",
+      "erro_medio_pp": 0.13184202209046086,
+      "mediana_pp": 0.08544805950469225,
+      "fracao_cortes_erro_positivo": 0.9292929292929293
+    }
+  ],
+  "cortes_30": [
+    {
+      "erro_pp": 0.1946595887183662,
+      "erro_todas_taxas_reais_pp": 0.0,
+      "contribuicoes_shapley_pp": {
+        "comparecimento": -0.0006774970999572362,
+        "brancos_nulos": 0.0016647956319436243,
+        "swing": 0.19410631539746365,
+        "exterior": -0.0004340252110838587
+      },
+      "erro_apos_corrigir_so_componente_pp": {
+        "comparecimento": 0.19565551788350177,
+        "brancos_nulos": 0.1931550011595249,
+        "swing": 0.0011616970170607033,
+        "exterior": 0.19509765823336522
+      },
+      "ano": 2022,
+      "marco": 30,
+      "pct_apurado": 0.3000012711110358,
+      "previsto": 51.097064705890524,
+      "real": 50.90240511717216,
+      "secoes_faltantes": 330419,
+      "secoes_exterior_faltantes": 429,
+      "taxas_agregadas_faltantes": {
+        "comparecimento_previsto": 0.7939939241897148,
+        "comparecimento_real": 0.7939515727118949,
+        "bn_previsto": 0.04713997705792594,
+        "bn_real": 0.04737994012464708,
+        "pct_13_previsto": 0.5200533504286498,
+        "pct_13_real": 0.5172872961706307
+      }
+    },
+    {
+      "erro_pp": 0.22614831468651886,
+      "erro_todas_taxas_reais_pp": 0.0,
+      "contribuicoes_shapley_pp": {
+        "comparecimento": -0.014173287261528483,
+        "brancos_nulos": 0.0002827154948814581,
+        "swing": 0.23988658936701948,
+        "exterior": 0.00015229708614642826
+      },
+      "erro_apos_corrigir_so_componente_pp": {
+        "comparecimento": 0.24137105150403926,
+        "brancos_nulos": 0.22583547936810078,
+        "swing": -0.01268668259578476,
+        "exterior": 0.22601300985820671
+      },
+      "ano": 2026,
+      "marco": 30,
+      "pct_apurado": 0.3000010015925321,
+      "previsto": 52.01133119894912,
+      "real": 51.7851828842626,
+      "secoes_faltantes": 349443,
+      "secoes_exterior_faltantes": 506,
+      "taxas_agregadas_faltantes": {
+        "comparecimento_previsto": 0.806648938281466,
+        "comparecimento_real": 0.808149551039157,
+        "bn_previsto": 0.033149769980066135,
+        "bn_real": 0.033385971359077615,
+        "pct_13_previsto": 0.5305931716237628,
+        "pct_13_real": 0.5273535099087167
+      }
+    }
+  ],
+  "arquivos_protegidos_sha256": {
+    "data\\processed\\avaliacao.parquet": "de9a12606308f144e16db81ade7e0d6e9ec7e2b6a505020228fa98b59bfaf57e",
+    "docs\\CALIBRACAO_IC.json": "8528984cd988925435ee61ee95f07b7c45621ceace17d541b57db9bd3036b287",
+    "docs\\CALIBRACAO_K.json": "fcbc34c6b16188bf9892c2964067a6fd73c6dfbadb241de055ccd14322f8eb66"
+  },
+  "dispersao_swing_observado_uf_em_30_pp": {
+    "2022": 5.205677237165881,
+    "2026": 1.9712191732509838
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "geometria_ano": 2022,
+  "municipios_geometria": 5570,
+  "geometrias_com_swing": 5570,
+  "municipios_comparaveis_tse": 5570,
+  "sem_depara": 0,
+  "escala_simetrica_pp": 16,
+  "exterior": "Excluído somente do mapa; mantido nas projeções nacionais.",
+  "fonte_depara": "https://dadosabertos.tse.jus.br/dataset/codigos-oficiais-de-uf-e-municipios-segundo-o-tse-e-o-ibge",
+  "fonte_geometria": "https://github.com/ipea/geobr",
+  "malha": "2022; municípios novos sem comparação não recebem swing inventado."
+}

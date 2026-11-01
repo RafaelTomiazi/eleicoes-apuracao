@@ -703,3 +703,53 @@ os cortes de 1% a 99% têm mais de 2.000 apuradas, e os trabalhadores produzem
 intervalos brutos com `calibrar_ic=False`. O teste específico falhou com os
 fatores novos antes dessa correção e passou depois. Os fatores congelados
 para 2026 permanecem byte a byte iguais.
+
+## Apresentação e diagnóstico posterior (Prompt 7)
+
+As figuras principais de 2022 e 2026 têm 1080×1350 pixels, usam nomes neutros,
+cinza/azul, linhas M0 e M3, resultado final e referência de 50%. A sombra marca
+os intervalos de cortes em que a parcial indicava o outro líder; empates não
+são classificados como líder errado. A estabilidade do líder é verificada nos
+99 cortes avaliados, não a cada BU individual.
+
+A faixa exibida é a estrutural bruta, lida diretamente de `ic_lo_bruto` e
+`ic_hi_bruto` da avaliação congelada. Cada gráfico declara **faixa conservadora,
+sem cobertura nominal validada** e que essa escolha foi feita **APÓS ver 2026**.
+Não se substituíram os limites calibrados no Parquet. A opção de apresentação
+é posterior ao teste, portanto não pode ser apresentada como escolha validada
+fora da amostra. A comparação de erros não usa intervalos.
+
+Comandos: `uv run python -m apuracao.bias` e
+`uv run python -m apuracao.plots`. O primeiro reconstrói apenas o corte de 30%
+de cada ano, sem bootstrap nem seleção de parâmetros, e confere a projeção
+com a linha congelada da avaliação. Só então acessa as respostas das faltantes
+para substituições oraculares. Shapley exato atribui as interações entre taxas
+sem escolher uma ordem de correção; as três taxas são corrigidas no Brasil e
+ZZ constitui um bloco separado. As quatro contribuições somam o erro total.
+O componente predominante é a participação/swing prevista; a causa do viés
+das árvores não foi isolada e não se ajustou o modelo. Resultados completos em
+[RESULTADOS.md](RESULTADOS.md) e [DIAGNOSTICO_VIES.json](DIAGNOSTICO_VIES.json).
+
+O mapa é exclusivamente descritivo. Soma os votos de cada município em cada
+ano e calcula `100 * (votos_13_2026 / validos_2026 - votos_13_2022 / validos_2022)`.
+Usa apenas pares de municípios com dados nas duas eleições, sem imputar o
+resultado de município novo. A correspondência oficial TSE–IBGE de 2026,
+já inspecionada (`CD_MUNICIPIO_TSE`, `CD_MUNICIPIO_IBGE`, `SG_UF`), é usada
+somente no mapa; não é introduzida no backtest. O exterior não tem geometria
+municipal brasileira, fica fora do mapa e continua nos resultados nacionais.
+
+Fonte da correspondência: [TSE](https://dadosabertos.tse.jus.br/dataset/codigos-oficiais-de-uf-e-municipios-segundo-o-tse-e-o-ibge).
+Geometrias: [geobr/IBGE](https://github.com/ipea/geobr), `read_municipality(year=2022)`.
+Leitura pela saída DuckDB e conversão WKB contorna o `fetchone` legado do
+conversor GeoPandas da versão instalada. Não se modificou a biblioteca. O cache
+municipal fica em `data/raw/geobr/municipios_2022.parquet`; o CRS original é
+EPSG:4674 e o mapa usa EPSG:5880. São 5.570 geometrias com comparação; o
+relatório de cobertura e a escala simétrica de ±16 p.p. estão em
+[COBERTURA_MAPA.json](COBERTURA_MAPA.json). A paleta azul–cinza–violeta tem
+centro em zero e não usa cores partidárias carregadas.
+
+O notebook `notebooks/02_resultados.ipynb` foi executado com Python 3.12.
+Seus blocos de código apenas importam e chamam funções; toda a lógica está
+em `src/apuracao/`. Figuras, rótulos e dimensões foram revisados visualmente.
+[FIGURAS_AUDITORIA.json](FIGURAS_AUDITORIA.json) registra a decisão posterior
+e os hashes dos três arquivos protegidos antes/depois da geração.

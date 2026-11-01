@@ -55,3 +55,45 @@ Os intervalos estruturais brutos e os intervalos após o fator estão comparados
 M0 é uma parcial sem intervalo inferencial: o Parquet mantém os limites degenerados e o campo cobriu, mas não se atribui cobertura nominal de 90% a esse modelo.
 
 Fontes de totais: arquivos oficiais independentes do BU registrados em config.py. Indicadores: edições históricas publicadas até 2021, documentadas em FONTES_MODELOS.md. Calibração fixa: [CALIBRACAO_IC.json](CALIBRACAO_IC.json).
+
+<!-- inicio:licoes-vies -->
+## O que a falha de cobertura ensinou
+
+A calibração contraiu a faixa estrutural de 2022. O valor próximo de 0,22 não representa todos os modelos: os fatores efetivamente salvos são:
+
+| Modelo | Menor fator | Maior fator | Largura média após/antes, em 2022 |
+| --- | ---: | ---: | ---: |
+| M1 | 0.0549 | 0.2386 | 0.1982 |
+| M2 | 0.1092 | 0.1524 | 0.1354 |
+| M3 | 0.0308 | 0.0756 | 0.0602 |
+
+No corte de 30%, o desvio-padrão dos swings médios observados por UF foi 5.2057 p.p. em 2022 e 1.9712 p.p. em 2026 (UFs com válidos já recebidos; dispersão não ponderada entre médias estaduais ponderadas por válidos). A largura bruta média do M3 caiu de 5.0593 para 1.8387 p.p. A faixa já nasceu mais estreita em 2026 e recebeu a mesma contração de escala. O erro pontual não diminuiu na mesma proporção.
+
+Uma eleição de calibração é **uma realização do processo eleitoral**: os 99 cortes são a mesma noite vista repetidamente e são autocorrelacionados. Não equivalem a 99 eleições independentes. Isso não permite estimar literalmente um tamanho amostral efetivo igual a 1, mas há apenas uma eleição de calibração para julgar a transferência entre eleições.
+
+**Decisão de apresentação feita APÓS ver 2026:** os gráficos usam a FAIXA ESTRUTURAL BRUTA, rotulada **faixa conservadora, sem cobertura nominal validada**. Ela cobriu 100% dos cortes dos dois anos observados. Essa escolha posterior não é uma validação fora da amostra da escolha de faixa, não retoca o teste e não demonstra probabilidade de cobertura de 90% em outra eleição. A avaliação, os fatores e os limites calibrados originais permanecem intactos.
+
+## Diagnóstico de viés do M3 em 30%
+
+Os dados futuros abaixo são usados **apenas para diagnóstico retrospectivo**. Primeiro reproduz-se a previsão congelada; depois substituem-se, por valores reais, as taxas das faltantes. Os três componentes de taxas são domésticos; o exterior é corrigido como quarto bloco, evitando dupla contagem. O Shapley exato das 24 ordens de substituição reparte as interações da razão nacional e soma ao erro total. Sinal positivo contribui para superestimar o candidato 13; negativo compensa o erro.
+
+| Componente | 2022 (p.p.) | 2026 (p.p.) |
+| --- | ---: | ---: |
+| Comparecimento | -0.000677 | -0.014173 |
+| Brancos/nulos | +0.001665 | +0.000283 |
+| Swing / participação prevista | +0.194106 | +0.239887 |
+| Exterior (ZZ) | -0.000434 | +0.000152 |
+| **Erro total** | **+0.194660** | **+0.226148** |
+
+A participação prevista (base + swing) é a contribuição dominante nos dois anos. Em 2026, o comparecimento compensa parte da superestimação; por isso a contribuição do swing é maior que o erro líquido. Brancos/nulos e ZZ têm efeitos pequenos. Isso identifica o componente da projeção que carrega o erro, mas não demonstra a causa do viés no LightGBM. Não se ajustou o swing, k, as árvores nem os intervalos.
+
+| Ano | Modelo | Erro médio nos 99 cortes (p.p.) | Cortes com erro positivo |
+| --- | --- | ---: | ---: |
+| 2022 | M2 | +0.3012 | 100.00% |
+| 2022 | M3 | +0.1138 | 93.94% |
+| 2026 | M2 | +0.1738 | 96.97% |
+| 2026 | M3 | +0.1318 | 92.93% |
+
+O padrão é compatível com viés de superestimação nestes dados. A faixa +0,1 a +0,2 p.p. descreve o erro médio do M3; M2 em 2022 fica próximo de +0,3 p.p. Duas eleições não estabelecem uma magnitude universal. Detalhes e taxas agregadas das faltantes estão em [DIAGNOSTICO_VIES.json](DIAGNOSTICO_VIES.json).
+
+<!-- fim:licoes-vies -->

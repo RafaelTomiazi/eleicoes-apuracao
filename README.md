@@ -1,12 +1,15 @@
 # eleicoes-apuracao
 
+**Com 1% das seções recebidas, o modelo já apontava o vencedor e manteve o
+mesmo líder nos demais cortes avaliados.**
+
 ## Pergunta
 
 Quem ganha com 30% das urnas apuradas?
 
-O projeto investiga quanto já é possível estimar do resultado final e da
-incerteza durante a apuração. As previsões ainda serão avaliadas, incluindo
-um backtest de 2022 com base histórica de 2018.
+O projeto reproduz a sequência de recebimento dos boletins e compara a
+parcial com projeções baseadas na eleição anterior. 2022 é o ano de
+desenvolvimento/calibração; 2026 é o teste fora da amostra.
 
 ## Dados
 
@@ -34,56 +37,57 @@ divulgação pública. Veja as evidências e limites em [METODO.md](docs/METODO.
 
 ## Resultados
 
-A ingestão reproduziu exatamente os totais oficiais independentes de votos
-por candidato, válidos, brancos, nulos, comparecimento e eleitorado apto.
+Na ordem em que os boletins chegaram ao TSE, o M3 apontou o candidato 13 como
+vencedor desde 1% das seções nos dois anos e manteve esse líder nos demais
+cortes de 1% a 99%. Essa estabilidade é retrospectiva e não significa
+certeza estatística disponível naquele instante.
 
-| Ano | Seções no Parquet | Com BU, para simulação | Sem BU, para conciliação de aptos |
+| Ano | Erro absoluto do M0 em 30% | Erro do M3 em 30% | M0: vencedor correto estável desde | M3: desde |
+| --- | ---: | ---: | ---: | ---: |
+| 2022 (desenvolvimento/calibração) | 1,9563 p.p. | +0,1947 p.p. | 68% | 1% |
+| 2026 (teste fora da amostra) | 2,2354 p.p. | +0,2261 p.p. | 48% | 1% |
+
+![Projeção de 2026, parcial e faixa estrutural bruta; escolha da faixa feita após ver o teste](reports/figures/projecao_2026.png)
+
+**A falha do intervalo faz parte do resultado.** O intervalo calibrado do M3
+cobriu o resultado final em apenas **6,06% dos cortes de 2026**, apesar dos
+90,91% em 2022, ajustados por construção. Os fatores do M3 eram de 0,031 a
+0,076, não um fator uniforme de 0,22. Uma única eleição de calibração e seus
+99 cortes autocorrelacionados não validam a transferência para outra eleição.
+Nenhum fator nem previsão foi retocado olhando 2026.
+
+Os gráficos usam a **faixa estrutural bruta: faixa conservadora, sem cobertura
+nominal validada**. Ela cobriu 100% dos cortes desses dois anos. **A escolha
+de exibi-la foi feita APÓS ver 2026** e não constitui uma validação fora da
+amostra dessa escolha. A avaliação original e os intervalos calibrados estão
+preservados em [RESULTADOS.md](docs/RESULTADOS.md).
+
+O diagnóstico em 30% atribui ao swing/participação prevista contribuições de
++0,1941 p.p. em 2022 e +0,2399 p.p. em 2026. Comparecimento compensa parte do
+erro de 2026; brancos/nulos e exterior têm efeitos pequenos. São substituições
+oraculares para explicar o erro, sem ajustar o modelo ou demonstrar sua causa.
+
+Outras figuras: [2022](reports/figures/projecao_2022.png),
+[erros dos quatro modelos](reports/figures/erro_modelos.png) e
+[swing municipal](reports/figures/swing_municipios_2022_2026.png).
+O [notebook executado](notebooks/02_resultados.ipynb) reproduz as figuras e
+exibe a decomposição do erro. O mapa é descritivo, usa resultados completos e
+não entra nas features de previsão.
+
+**Validação dos dados:** diferença zero contra fontes independentes do TSE
+para votos por candidato, válidos, brancos, nulos, comparecimento e aptos.
+
+| Ano | Seções no Parquet | Com BU, para simulação | Sem BU, para conciliar aptos |
 | --- | ---: | ---: | ---: |
 | 2018 | 454.490 | 454.448 | 42 |
 | 2022 | 472.075 | 472.028 | 47 |
 | 2026 | 499.248 | 499.205 | 43 |
 
-As seções sem BU vieram do detalhe oficial, possuem comparecimento e votos
-zero e estão marcadas com `tem_bu=False` e `apta_simulacao=False`.
-A simulação da parcial, na ordem em que os boletins chegaram ao TSE e sem
-estimar votos faltantes, gerou estes resultados nos cortes de 1%:
-
-| Ano | Primeiro corte com erro <1 p.p. | Abaixo de 1 p.p. até o fim | Maior desvio absoluto nos cortes |
-| --- | ---: | ---: | ---: |
-| 2022 | 62% | 62% | 7,3368 p.p. (em 1%) |
-| 2026 | 1% | 66% | 2,3009 p.p. (em 25%) |
-
-Os percentuais estão arredondados. Um erro pequeno no começo não garante que
-a parcial permanecerá perto do resultado final. Gráficos: [2022](reports/figures/parcial_2022.png)
-e [2026](reports/figures/parcial_2026.png).
-
-Na aferição inicial dos modelos, com 30% das seções de 2022 recebidas, os erros
-absolutos foram 1,956 p.p. (M0), 0,688 (M1), 0,432 (M2) e **0,195 (M3)**.
-O resultado final do candidato 13 foi 50,9024%; M3 estimou 51,0971%.
-Esse corte participou da calibração de k em 2022. No benchmark inicial, o
-intervalo do M3, [50,9506%; 51,2413%], não incluiu o resultado final nesse
-corte, motivando a revisão do mecanismo de incerteza.
-
-**A avaliação completa não validou os intervalos em 2026.** Após acrescentar
-choques comuns e calibrar a escala exclusivamente em 2022, as coberturas no
-teste de 2026 foram 19,19% (M1), 7,07% (M2) e **6,06% (M3)**, longe dos 90%
-pretendidos. Em 2022, os três atingem 90,91% por construção. Não houve
-reajuste dos fatores usando 2026; não se deve anunciar cobertura de 90% validada.
-
-A projeção pontual do M3 manteve o vencedor correto desde o corte de 1% em
-2026, uma estabilidade retrospectiva que não equivale a certeza estatística.
-Foram avaliados 99 cortes por ano, em 52,31 minutos. O relatório completo,
-incluindo erros em 10/30/50%, está em [RESULTADOS.md](docs/RESULTADOS.md).
-
-Os testes zeram e removem os resultados das seções faltantes para garantir
-que os modelos usem apenas informações disponíveis no snapshot. Fontes e
-limites estão em [METODO.md](docs/METODO.md); os tempos e os quatro cortes
-por ano estão em [BENCHMARK_MODELOS.json](docs/BENCHMARK_MODELOS.json).
-
-O pareamento por seção ou local de votação cobre **98,9102% dos aptos de 2022**
-(base 2018) e **97,6169% dos aptos de 2026** (base 2022). Os demais usam zona,
-município ou UF. Essas coberturas medem disponibilidade da base histórica;
-a precisão das projeções será medida no backtest.
+As linhas sem BU são oficiais, têm votos e comparecimento zero e ficam fora
+da simulação. Seção + local cobrem 98,9102% dos aptos de 2022 e 97,6169% dos
+de 2026 no pareamento histórico. Os testes zeram e removem os resultados
+das faltantes para impedir seu uso pelos modelos. Fontes e regras estão em
+[METODO.md](docs/METODO.md).
 
 ## Como rodar
 
@@ -100,6 +104,8 @@ uv run python -m apuracao.simulate
 uv run python -m apuracao.features
 uv run python -m apuracao.models --calibrar-k
 uv run python -m apuracao.evaluate --workers 4 --n-jobs 1
+uv run python -m apuracao.bias
+uv run python -m apuracao.plots
 uv run pytest
 ```
 

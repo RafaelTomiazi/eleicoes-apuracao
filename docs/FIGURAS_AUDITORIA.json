@@ -1,0 +1,15 @@
+{
+  "faixa": "Estrutural bruta; faixa conservadora, sem cobertura nominal validada.",
+  "escolha": "Feita APÓS observar os resultados de 2026; não é uma validação fora da amostra dessa escolha.",
+  "arquivos_protegidos_sha256": {
+    "data\\processed\\avaliacao.parquet": "de9a12606308f144e16db81ade7e0d6e9ec7e2b6a505020228fa98b59bfaf57e",
+    "docs\\CALIBRACAO_IC.json": "8528984cd988925435ee61ee95f07b7c45621ceace17d541b57db9bd3036b287",
+    "docs\\CALIBRACAO_K.json": "fcbc34c6b16188bf9892c2964067a6fd73c6dfbadb241de055ccd14322f8eb66"
+  },
+  "figuras": [
+    "reports\\figures\\projecao_2026.png",
+    "reports\\figures\\projecao_2022.png",
+    "reports\\figures\\erro_modelos.png",
+    "reports\\figures\\swing_municipios_2022_2026.png"
+  ]
+}
