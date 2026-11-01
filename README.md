@@ -20,6 +20,11 @@ O candidato 13 é A nos três anos; B é o candidato 17 em 2018 e o candidato 22
 em 2022/2026. A notação serve para comparar proporções e swings. Textos e
 gráficos usam números ou nomes de forma neutra, sem cores partidárias carregadas.
 
+**2022 é desenvolvimento/calibração:** k e os fatores dos intervalos são
+escolhidos nesse ano. **2026 é teste fora da amostra:** aplica-se a mesma
+configuração, sem reajustar pelo resultado do teste. A sequência usada é a
+ordem em que os boletins chegaram ao TSE.
+
 Os horários de recebimento de 2022 e 2026 coincidem integralmente com o campo
 Hora TSE do detalhe oficial por seção. O método os interpreta como Brasília,
 com apoio nas normas eleitorais e na comparação entre UFs; não aplica ajustes
@@ -55,9 +60,20 @@ e [2026](reports/figures/parcial_2026.png).
 Na aferição inicial dos modelos, com 30% das seções de 2022 recebidas, os erros
 absolutos foram 1,956 p.p. (M0), 0,688 (M1), 0,432 (M2) e **0,195 (M3)**.
 O resultado final do candidato 13 foi 50,9024%; M3 estimou 51,0971%.
-Esse corte participou da calibração de k em 2022. A avaliação completa ainda
-será feita. O intervalo nominal de 90% do M3, [50,9506%; 51,2413%], não incluiu
-o resultado final nesse corte: a cobertura dos intervalos precisa ser avaliada.
+Esse corte participou da calibração de k em 2022. No benchmark inicial, o
+intervalo do M3, [50,9506%; 51,2413%], não incluiu o resultado final nesse
+corte, motivando a revisão do mecanismo de incerteza.
+
+**A avaliação completa não validou os intervalos em 2026.** Após acrescentar
+choques comuns e calibrar a escala exclusivamente em 2022, as coberturas no
+teste de 2026 foram 19,19% (M1), 7,07% (M2) e **6,06% (M3)**, longe dos 90%
+pretendidos. Em 2022, os três atingem 90,91% por construção. Não houve
+reajuste dos fatores usando 2026; não se deve anunciar cobertura de 90% validada.
+
+A projeção pontual do M3 manteve o vencedor correto desde o corte de 1% em
+2026, uma estabilidade retrospectiva que não equivale a certeza estatística.
+Foram avaliados 99 cortes por ano, em 52,31 minutos. O relatório completo,
+incluindo erros em 10/30/50%, está em [RESULTADOS.md](docs/RESULTADOS.md).
 
 Os testes zeram e removem os resultados das seções faltantes para garantir
 que os modelos usem apenas informações disponíveis no snapshot. Fontes e
@@ -83,7 +99,7 @@ uv run python -m apuracao.match
 uv run python -m apuracao.simulate
 uv run python -m apuracao.features
 uv run python -m apuracao.models --calibrar-k
-uv run python -m apuracao.models
+uv run python -m apuracao.evaluate --workers 4 --n-jobs 1
 uv run pytest
 ```
 

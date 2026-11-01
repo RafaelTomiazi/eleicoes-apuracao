@@ -1,0 +1,288 @@
+{
+  "versao": "choques-uf-nacional-v1",
+  "ano_calibracao": 2022,
+  "nivel_nominal": 0.9,
+  "congelado_em": "2026-10-31T23:34:22.717549+00:00",
+  "fatores": {
+    "M1": {
+      "0": {
+        "inicio": 1,
+        "fim": 10,
+        "n": 10,
+        "fator": 0.2385578453955985,
+        "ordem_quantil": 9,
+        "cobertura_bruta": 1.0,
+        "cobertura_calibracao": 0.9
+      },
+      "1": {
+        "inicio": 11,
+        "fim": 20,
+        "n": 10,
+        "fator": 0.22660553010681103,
+        "ordem_quantil": 9,
+        "cobertura_bruta": 1.0,
+        "cobertura_calibracao": 0.9
+      },
+      "2": {
+        "inicio": 21,
+        "fim": 30,
+        "n": 10,
+        "fator": 0.21497338873801924,
+        "ordem_quantil": 9,
+        "cobertura_bruta": 1.0,
+        "cobertura_calibracao": 0.9
+      },
+      "3": {
+        "inicio": 31,
+        "fim": 40,
+        "n": 10,
+        "fator": 0.21678298539396554,
+        "ordem_quantil": 9,
+        "cobertura_bruta": 1.0,
+        "cobertura_calibracao": 0.9
+      },
+      "4": {
+        "inicio": 41,
+        "fim": 50,
+        "n": 10,
+        "fator": 0.21166123924071578,
+        "ordem_quantil": 9,
+        "cobertura_bruta": 1.0,
+        "cobertura_calibracao": 0.9
+      },
+      "5": {
+        "inicio": 51,
+        "fim": 60,
+        "n": 10,
+        "fator": 0.1692489639701369,
+        "ordem_quantil": 9,
+        "cobertura_bruta": 1.0,
+        "cobertura_calibracao": 0.9
+      },
+      "6": {
+        "inicio": 61,
+        "fim": 70,
+        "n": 10,
+        "fator": 0.13375058133483222,
+        "ordem_quantil": 9,
+        "cobertura_bruta": 1.0,
+        "cobertura_calibracao": 0.9
+      },
+      "7": {
+        "inicio": 71,
+        "fim": 80,
+        "n": 10,
+        "fator": 0.09912212895465272,
+        "ordem_quantil": 9,
+        "cobertura_bruta": 1.0,
+        "cobertura_calibracao": 0.9
+      },
+      "8": {
+        "inicio": 81,
+        "fim": 90,
+        "n": 10,
+        "fator": 0.05487306560429805,
+        "ordem_quantil": 9,
+        "cobertura_bruta": 1.0,
+        "cobertura_calibracao": 0.9
+      },
+      "9": {
+        "inicio": 91,
+        "fim": 99,
+        "n": 9,
+        "fator": 0.0765816333120078,
+        "ordem_quantil": 9,
+        "cobertura_bruta": 1.0,
+        "cobertura_calibracao": 1.0
+      }
+    },
+    "M2": {
+      "0": {
+        "inicio": 1,
+        "fim": 10,
+        "n": 10,
+        "fator": 0.10924247774565739,
+        "ordem_quantil": 9,
+        "cobertura_bruta": 1.0,
+        "cobertura_calibracao": 0.9
+      },
+      "1": {
+        "inicio": 11,
+        "fim": 20,
+        "n": 10,
+        "fator": 0.13823687074839097,
+        "ordem_quantil": 9,
+        "cobertura_bruta": 1.0,
+        "cobertura_calibracao": 0.9
+      },
+      "2": {
+        "inicio": 21,
+        "fim": 30,
+        "n": 10,
+        "fator": 0.13379990582926976,
+        "ordem_quantil": 9,
+        "cobertura_bruta": 1.0,
+        "cobertura_calibracao": 0.9
+      },
+      "3": {
+        "inicio": 31,
+        "fim": 40,
+        "n": 10,
+        "fator": 0.15007202503325062,
+        "ordem_quantil": 9,
+        "cobertura_bruta": 1.0,
+        "cobertura_calibracao": 0.9
+      },
+      "4": {
+        "inicio": 41,
+        "fim": 50,
+        "n": 10,
+        "fator": 0.15236176743677693,
+        "ordem_quantil": 9,
+        "cobertura_bruta": 1.0,
+        "cobertura_calibracao": 0.9
+      },
+      "5": {
+        "inicio": 51,
+        "fim": 60,
+        "n": 10,
+        "fator": 0.14541078223601017,
+        "ordem_quantil": 9,
+        "cobertura_bruta": 1.0,
+        "cobertura_calibracao": 0.9
+      },
+      "6": {
+        "inicio": 61,
+        "fim": 70,
+        "n": 10,
+        "fator": 0.14838741350371235,
+        "ordem_quantil": 9,
+        "cobertura_bruta": 1.0,
+        "cobertura_calibracao": 0.9
+      },
+      "7": {
+        "inicio": 71,
+        "fim": 80,
+        "n": 10,
+        "fator": 0.13827869806987947,
+        "ordem_quantil": 9,
+        "cobertura_bruta": 1.0,
+        "cobertura_calibracao": 0.9
+      },
+      "8": {
+        "inicio": 81,
+        "fim": 90,
+        "n": 10,
+        "fator": 0.13572970842105994,
+        "ordem_quantil": 9,
+        "cobertura_bruta": 1.0,
+        "cobertura_calibracao": 0.9
+      },
+      "9": {
+        "inicio": 91,
+        "fim": 99,
+        "n": 9,
+        "fator": 0.1472196736279813,
+        "ordem_quantil": 9,
+        "cobertura_bruta": 1.0,
+        "cobertura_calibracao": 1.0
+      }
+    },
+    "M3": {
+      "0": {
+        "inicio": 1,
+        "fim": 10,
+        "n": 10,
+        "fator": 0.03084362154938345,
+        "ordem_quantil": 9,
+        "cobertura_bruta": 1.0,
+        "cobertura_calibracao": 0.9
+      },
+      "1": {
+        "inicio": 11,
+        "fim": 20,
+        "n": 10,
+        "fator": 0.06534053158268958,
+        "ordem_quantil": 9,
+        "cobertura_bruta": 1.0,
+        "cobertura_calibracao": 0.9
+      },
+      "2": {
+        "inicio": 21,
+        "fim": 30,
+        "n": 10,
+        "fator": 0.0685365437509707,
+        "ordem_quantil": 9,
+        "cobertura_bruta": 1.0,
+        "cobertura_calibracao": 0.9
+      },
+      "3": {
+        "inicio": 31,
+        "fim": 40,
+        "n": 10,
+        "fator": 0.07427922121645508,
+        "ordem_quantil": 9,
+        "cobertura_bruta": 1.0,
+        "cobertura_calibracao": 0.9
+      },
+      "4": {
+        "inicio": 41,
+        "fim": 50,
+        "n": 10,
+        "fator": 0.0686251319471143,
+        "ordem_quantil": 9,
+        "cobertura_bruta": 1.0,
+        "cobertura_calibracao": 0.9
+      },
+      "5": {
+        "inicio": 51,
+        "fim": 60,
+        "n": 10,
+        "fator": 0.06725235128800933,
+        "ordem_quantil": 9,
+        "cobertura_bruta": 1.0,
+        "cobertura_calibracao": 0.9
+      },
+      "6": {
+        "inicio": 61,
+        "fim": 70,
+        "n": 10,
+        "fator": 0.07042906886683242,
+        "ordem_quantil": 9,
+        "cobertura_bruta": 1.0,
+        "cobertura_calibracao": 0.9
+      },
+      "7": {
+        "inicio": 71,
+        "fim": 80,
+        "n": 10,
+        "fator": 0.06748817714904702,
+        "ordem_quantil": 9,
+        "cobertura_bruta": 1.0,
+        "cobertura_calibracao": 0.9
+      },
+      "8": {
+        "inicio": 81,
+        "fim": 90,
+        "n": 10,
+        "fator": 0.06770125000008549,
+        "ordem_quantil": 9,
+        "cobertura_bruta": 1.0,
+        "cobertura_calibracao": 0.9
+      },
+      "9": {
+        "inicio": 91,
+        "fim": 99,
+        "n": 9,
+        "fator": 0.07563958247168055,
+        "ordem_quantil": 9,
+        "cobertura_bruta": 1.0,
+        "cobertura_calibracao": 1.0
+      }
+    }
+  },
+  "metodo": "Quantil empírico de erro absoluto dividido pela semilargura do lado do erro; faixas fixas de 10 marcos.",
+  "limitacao": "Calibração no mesmo ano de desenvolvimento, com snapshots dependentes; não há garantia conformal de cobertura fora da amostra.",
+  "assinatura_experimento": "d60f5405e1624f4d710e",
+  "k": 5
+}

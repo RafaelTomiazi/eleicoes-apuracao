@@ -182,7 +182,10 @@ class Modelo:
         if self.calibrar_ic and calibration.exists():
             from apuracao.evaluate import apply_ic_calibration
 
-            return apply_ic_calibration(result,type(self).__name__,snapshot.pct_apurado,read_json(calibration))
+            model_name = type(self).__name__
+            if model_name=="M3" and obs.height<self.min_train:
+                model_name = "M2"
+            return apply_ic_calibration(result,model_name,snapshot.pct_apurado,read_json(calibration))
         return result
 
 

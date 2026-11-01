@@ -1,0 +1,74 @@
+[
+  {
+    "ano": 2022,
+    "modelo": "M0",
+    "cobertura": 0.0,
+    "lider_em_99": 13,
+    "estavel_desde": 0.6800020337776572,
+    "marco_estavel": 68,
+    "confere_final": true
+  },
+  {
+    "ano": 2022,
+    "modelo": "M1",
+    "cobertura": 0.9090909090909091,
+    "lider_em_99": 13,
+    "estavel_desde": 0.010001525333242943,
+    "marco_estavel": 1,
+    "confere_final": true
+  },
+  {
+    "ano": 2022,
+    "modelo": "M2",
+    "cobertura": 0.9090909090909091,
+    "lider_em_99": 13,
+    "estavel_desde": 0.010001525333242943,
+    "marco_estavel": 1,
+    "confere_final": true
+  },
+  {
+    "ano": 2022,
+    "modelo": "M3",
+    "cobertura": 0.9090909090909091,
+    "lider_em_99": 13,
+    "estavel_desde": 0.010001525333242943,
+    "marco_estavel": 1,
+    "confere_final": true
+  },
+  {
+    "ano": 2026,
+    "modelo": "M0",
+    "cobertura": 0.0,
+    "lider_em_99": 13,
+    "estavel_desde": 0.48000120191103857,
+    "marco_estavel": 48,
+    "confere_final": true
+  },
+  {
+    "ano": 2026,
+    "modelo": "M1",
+    "cobertura": 0.1919191919191919,
+    "lider_em_99": 13,
+    "estavel_desde": 0.01000190302581104,
+    "marco_estavel": 1,
+    "confere_final": true
+  },
+  {
+    "ano": 2026,
+    "modelo": "M2",
+    "cobertura": 0.0707070707070707,
+    "lider_em_99": 13,
+    "estavel_desde": 0.01000190302581104,
+    "marco_estavel": 1,
+    "confere_final": true
+  },
+  {
+    "ano": 2026,
+    "modelo": "M3",
+    "cobertura": 0.06060606060606061,
+    "lider_em_99": 13,
+    "estavel_desde": 0.01000190302581104,
+    "marco_estavel": 1,
+    "confere_final": true
+  }
+]

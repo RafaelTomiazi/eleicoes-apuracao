@@ -184,7 +184,20 @@ def write_results(records: list[dict[str, Any]], execution: dict[str, Any], root
              "de iniciar a execução de 2026; não houve reajuste pelo desempenho no teste.","",
              f"Tempo total desta execução: **{execution['tempo_total_s']/60:.2f} minutos** "
              f"({execution['tempo_total_s']:.2f} s); {execution['workers']} processos, "
-             f"{execution['n_jobs']} threads LightGBM por processo e 200 reamostragens por intervalo.",""]
+             f"{execution['n_jobs']} thread(s) LightGBM por processo e 200 reamostragens por intervalo.",""]
+    outside = [row for row in records if row["ano"]==2026 and row["modelo"]=="M3"]
+    covered = sum(row["cobriu"] for row in outside)
+    stable = winner_stability(outside)
+    lines += [f"**Resultado central do M3 em 2026:** cobertura de **{100*covered/len(outside):.2f}% "
+              f"({covered}/{len(outside)})**; líder pontual estável desde **{stable['marco_estavel']}%**.",""]
+    if covered/len(outside)<0.9:
+        lines += ["**A meta de cobertura não foi atingida fora da amostra.** "
+                  "Os intervalos calibrados não devem ser apresentados como tendo cobertura "
+                  "de 90% validada. A boa precisão pontual não corrige essa falha. "
+                  "Os fatores foram mantidos: não se ajustou 2026 para melhorar o resultado.",""]
+    if execution.get("codigo_calculo_commit"):
+        lines += [f"Código numérico do experimento: commit `{execution['codigo_calculo_commit']}`. "
+                  "Revisões posteriores de integração/apresentação não mudaram os cálculos brutos.",""]
     summaries = []
     for year in (2022,2026):
         lines += [f"## {year}","","| Modelo | Erro em 10% (p.p.) | Erro em 30% (p.p.) | Erro em 50% (p.p.) | Cobertura IC | Líder estável desde | Líder em 99% | Confere final? |",
@@ -212,6 +225,10 @@ def write_results(records: list[dict[str, Any]], execution: dict[str, Any], root
               "nacional final. Os cortes são dependentes; não são 99 eleições independentes. "
               "A calibração por faixas é empírica, inspirada em escores conformais, sem garantia "
               "conformal de 90% no ano seguinte. A cobertura em 2022 é ajustada por construção.","",
+              "Os intervalos estruturais brutos e os intervalos após o fator estão comparados "
+              "nas tabelas. Cobertura bruta de 100% nesta única eleição também não demonstra "
+              "calibração de 90%: pode indicar conservadorismo. A contração de escala aprendida "
+              "em 2022 não se transferiu adequadamente; não se escolheu outra escala após observar o teste.","",
               "M0 é uma parcial sem intervalo inferencial: o Parquet mantém os limites degenerados "
               "e o campo cobriu, mas não se atribui cobertura nominal de 90% a esse modelo.","",
               "Fontes de totais: arquivos oficiais independentes do BU registrados em config.py. "

@@ -546,6 +546,11 @@ contra a data do snapshot, inclusive quando indicadores são passados à API.
 
 ### Intervalos bootstrap: implementação e limites
 
+**Nota de versão:** a descrição abaixo registra o intervalo inicial do Prompt 5,
+substituído no Prompt 6 pelos choques estruturais e pela calibração empírica
+descritos na seção de avaliação. Os números do benchmark inicial permanecem
+como registro histórico, não como intervalos vigentes.
+
 M1–M3 usam 200 reamostragens, seed=42, dos resíduos das **apuradas** após o
 ajuste do respectivo modelo. Os resíduos das três taxas são resumidos por
 município `(uf,cod_municipio)`, com os mesmos pesos das taxas. O vetor de
@@ -568,7 +573,7 @@ Em 100% recebido, não existem faltantes: todos os modelos devolvem exatamente
 o resultado apurado e intervalo degenerado. Os testes conferem esse fechamento
 nos dois anos contra os totais oficiais independentes do BU.
 
-Comandos: `uv run python -m apuracao.features`,
+Comandos usados na etapa inicial: `uv run python -m apuracao.features`,
 `uv run python -m apuracao.models --calibrar-k` (somente 2022) e
 `uv run python -m apuracao.models` (aferição de quatro cortes por ano).
 `--ano 2022` repete somente aquele ano. Os tempos incluem 200 reamostragens
@@ -606,3 +611,95 @@ Tempos pontuais desta máquina, não um teste de latência isolado. Excluem impo
 A meta pontual <1 p.p. a 30% foi atingida nesta aferição de 2022 por M1–M3. Os mesmos cortes de 2022 participaram da seleção de k; logo não são teste independente da calibração. Os intervalos de M1, M2 e M3 em 30% de 2022 não contiveram o final. A cobertura nominal de 90% não está demonstrada; avaliar a cobertura no Prompt 6, sem ajustar intervalos para encaixar o resultado de 2026.
 
 <!-- fim:modelos-benchmark -->
+
+## Avaliação e intervalos estruturais (Prompt 6)
+
+**2022 é desenvolvimento/calibração. 2026 é teste fora da amostra.** O valor
+de k=5 continua fixo. As previsões pontuais dos modelos não foram alteradas.
+O ajuste é no mecanismo de incerteza e em sua escala empírica.
+
+O erro original foi reproduzido em teste sintético: milhares de municípios
+faltantes de uma mesma UF recebiam resíduos independentes e o intervalo ficava
+com cerca de 0,54 p.p. de largura, apesar de swings observados por UF distintos.
+A regressão agora exige que o choque comum não desapareça pela média entre
+municípios; ela falhou antes da correção e passou depois.
+
+Em cada reamostragem de M1–M3 há três componentes aplicados às faltantes:
+
+1. O resíduo médio municipal, em bloco, preservando o vetor das três taxas.
+2. Um choque comum para cada UF faltante, sorteado dos swings médios das UFs
+   observadas menos o swing nacional ponderado. Todas as seções da mesma UF
+   compartilham o choque; ele não é centralizado dentro de cada município.
+3. Um choque nacional comum a todas as faltantes. Seu desvio-padrão é a dispersão
+   entre swings de UF dividida pela raiz do número efetivo de UFs observadas
+   (obtido pelas contagens de seções, separadamente para cada taxa).
+
+Se só houver uma UF observada, usa-se a dispersão municipal para o erro da
+média nacional. O mecanismo não conhece os swings verdadeiros das faltantes.
+As taxas são limitadas a [0,1], os 200 resultados nacionais são agregados, e
+usa-se uma envoltória bilateral da projeção pontual, com raio igual à maior
+distância entre ela e os quantis de 5%/95%. Assim, um deslocamento comum em
+um só sentido não elimina artificialmente a incerteza do outro lado. Os
+limites finais são limitados a [0,100].
+O LightGBM não é retreinado dentro das reamostragens.
+
+### Calibração da escala e congelamento
+
+São usados exclusivamente os 99 cortes de 2022. As faixas foram fixadas antes
+de avaliar 2026: marcos 1–10%, 11–20%, ..., 91–99%. Para cada modelo e faixa,
+o escore é `abs(real - previsto) / semilargura_estrutural_do_lado_do_erro`.
+O fator é o escore de ordem `ceil(0.9 * n)`, a menor escala que cobre pelo
+menos 90% dos cortes daquela faixa de desenvolvimento. Os dois lados do
+intervalo são multiplicados pelo mesmo fator e limitados a [0,100]. O fator
+pode ser menor que 1 quando o intervalo estrutural já era conservador.
+
+Os fatores, tamanhos das faixas, ordem do quantil, cobertura antes/depois,
+data de congelamento e assinatura do experimento ficam em
+`docs/CALIBRACAO_IC.json`. O arquivo é salvo **antes** da avaliação de 2026,
+e seu SHA-256 é conferido ao final para impedir reajuste durante o teste.
+Nenhum erro de 2026 entra na calibração. A API normal `prever` aplica esse
+arquivo quando ele existe; `calibrar_ic=False` retorna somente o intervalo
+estrutural para gerar os dados de desenvolvimento sem aplicação circular.
+
+Esta é calibração empírica inspirada em escores conformais, não uma garantia
+conformal: snapshots sucessivos são dependentes e 2022 também foi usado para
+escolher k. A referência conceitual é
+[Angelopoulos e Bates, A Gentle Introduction to Conformal Prediction](https://arxiv.org/abs/2107.07511).
+O teste de 2026 mede a transferência real da escala, inclusive se a cobertura
+ficar abaixo ou acima de 90%. Não haverá novo ajuste com base nesse resultado.
+
+### Execução e relatório
+
+Comando: `uv run python -m apuracao.evaluate --workers 2 --n-jobs 2`.
+Na execução final usaram-se quatro processos com uma thread LightGBM cada
+(`--workers 4 --n-jobs 1`). Os choques são somados por município antes da
+expansão para seções, uma otimização algébrica conferida contra a formulação
+anterior com tolerância de 1e-10 p.p. Não há mudança das reamostragens.
+Cada processo carrega o pareamento uma vez e usa slices dos mesmos buffers.
+Tarefas são persistidas individualmente em `data/processed/avaliacao_cache/`,
+com assinatura do código, configuração e Parquets. Uma retomada reutiliza
+somente tarefas com a mesma assinatura. O progresso fica em
+`data/processed/avaliacao_progresso.json`. São 792 linhas finais: dois anos,
+99 snapshots e quatro modelos. Não se inclui 100%, pois o intervalo nesse
+corte é degenerado por definição e inflaria a cobertura.
+
+Saída: `data/processed/avaliacao.parquet`, com `ano`, `modelo`, `pct_apurado`,
+`horario_corte`, `previsto`, `ic_lo`, `ic_hi`, `real`, `erro_pp` e `cobriu`.
+Campos adicionais de auditoria: marco nominal, limites estruturais antes do
+fator, fator aplicado e segundos de previsão. Os instantes têm fuso explícito;
+converter para Brasília na exibição. `docs/RESULTADOS.md` resume os dois anos,
+os erros em 10/30/50%, a cobertura dos 99 cortes e a estabilidade do líder.
+
+O líder estável é o candidato projetado em 99%; localiza-se retrospectivamente
+a última mudança anterior. O relatório confere esse líder com o vencedor real.
+Isso não equivale a o intervalo já excluir 50% no primeiro corte estável.
+M0 continua sem intervalo inferencial: seu `cobriu` no Parquet corresponde
+apenas à igualdade com o intervalo degenerado, sem cobertura nominal atribuída.
+
+O código dos cálculos foi preservado no commit `f720fc2`. Uma correção posterior
+de integração da API faz o M3 usar também o fator do M2 quando cai para M2
+abaixo de 2.000 apuradas. Ela não altera os cálculos desta avaliação: todos
+os cortes de 1% a 99% têm mais de 2.000 apuradas, e os trabalhadores produzem
+intervalos brutos com `calibrar_ic=False`. O teste específico falhou com os
+fatores novos antes dessa correção e passou depois. Os fatores congelados
+para 2026 permanecem byte a byte iguais.
